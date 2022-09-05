@@ -190,9 +190,8 @@ body{
   
 }
 .header{
-    height: 100vh;
-    background-image: linear-gradient(120deg, rgba(137, 246, 254, 0.082) 0%, rgba(102, 166, 255, 0.089) 100%), url(../img/nuevo.png);
-    width: 80%;
+    height: 80vh;
+    background-image: linear-gradient(120deg, rgba(137, 246, 254, 0.082) 0%, rgba(102, 166, 255, 0.089) 100%), url(../img/ejemplo_nuevo.png);
 }
 .prueba{
     margin-bottom: 25px;
