@@ -1,0 +1,51 @@
+SERVIDOR DEVEL WORD - PUERTO 2705
+
+d3v3l8$1.250$World
+
+source env/bin/activate
+sudo chmod -R 777 deploy
+sudo certbot --nginx -d develworld.com -d www.develworld.com
+
+sudo certbot --nginx -d predicloudec.com -d www.predicloudec.com
+
+SERVIDOR PREDICLOUD -PUERTO 2705
+d3v3l8$1.250$World
+Devaluado2705.
+CONTRASEÑA POSGRESQL
+d3v3l8$1.250$World
+
+PERMISOS
+sudo chmod -R 777 deploy
+
+RENOVAR CERTIFICADO 
+sudo certbot renew --dry-run
+
+POSGRESQL
+*ingresar a postgres
+ sudo -u postgres psql
+
+
+SUPERVISOR ACTUALIZAR LOS CAMBIOS
+
+sudo supervisorctl restart all
+SUPERPVISOR AGREGAR 
+sudo supervisorctl reread
+sudo supervisorctl update
+
+
+sudo systemctl daemon-reload
+sudo systemctl restart gunicorn
+sudo systemctl restart nginx
+
+
+COLLECSTATIC
+python manage.py collectstatic --link --noinput
+
+VER LOS PROCESOS DEL SERVIDOR
+sudo nano err.log
+
+
+crear el sitio en nginx
+sudo nano /etc/nginx/sites-available/veterinaria.conf
+
+sudo ln -s /etc/nginx/sites-available/veterinaria.conf /etc/nginx/sites-enabled/

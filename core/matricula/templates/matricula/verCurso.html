@@ -1,0 +1,1404 @@
+{% extends 'skin.html' %}
+{% load widget_tweaks %}
+
+{% load static %}
+
+{% block head_body %}
+
+    <link rel="stylesheet" href="{% static 'lib/formvalidation-1.8.0/css/formValidation.min.css' %}">
+    <script src="{% static 'lib/formvalidation-1.8.0/js/es6-shim.min.js' %}"></script>
+    <script src="{% static 'lib/formvalidation-1.8.0/js/FormValidation.min.js' %}"></script>
+    <script src="{% static 'lib/formvalidation-1.8.0/js/plugins/Bootstrap.min.js' %}"></script>
+    <script src="{% static 'lib/formvalidation-1.8.0/js/locales/es_ES.min.js' %}"></script>
+    
+    <link rel="stylesheet" href="{% static 'lib/datatables-1.10.25/css/dataTables.bootstrap4.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'lib/datatables-1.10.25/plugins/responsive-2.2.9/css/responsive.bootstrap4.min.css' %}"/>
+{#    <link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/css/jquery.dataTables.min.css' %}"/>#}
+    <script src="{% static 'lib/datatables-1.10.25/js/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.25/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.25/plugins/responsive-2.2.9/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.25/plugins/responsive-2.2.9/js/responsive.bootstrap4.min.js' %}"></script>
+
+    <script src="{% static 'lib/tempusdominus-bootstrap-4.5.37.0/js/tempusdominus-bootstrap.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'lib/tempusdominus-bootstrap-4.5.37.0/css/tempusdominus-bootstrap.css' %}"/>
+    
+    <script src="{% static 'lib/select2-4.0.13/js/select2.min.js' %}"></script>
+    <script src="{% static 'lib/select2-4.0.13/js/i18n/es.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'lib/select2-4.0.13/css/select2.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/select2-4.0.13/css/select2-bootstrap4.min.css' %}">
+
+    <script src="{% static 'matricula/js/form.js' %}"></script>
+    <script src="{% static 'matricula/js/post.js' %}"></script>
+    <script src="{% static 'matricula/js/asistencia.js' %}"></script>
+    <script src="{% static 'matricula/js/crearTarea.js' %}"></script>
+    <script src="{% static 'matricula/js/updateNota.js' %}"></script>
+    <script src="{% static 'matricula/js/silabo.js' %}"></script>
+    <script src="{% static 'matricula/js/update_excel_actividad.js' %}"></script>
+
+
+    <script src="{% static 'lib/jquery-ui-1.12.1/jquery-ui.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'lib/jquery-ui-1.12.1/jquery-ui.css' %}"/>
+
+    <style>
+          .modal-dialog-full-width {
+        width: 100% !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        max-width:none !important;
+
+    }
+
+    .modal-content-full-width  {
+        height: auto !important;
+        min-height: 100% !important;
+        border-radius: 0 !important;
+        background-color: #ececec !important 
+    }
+
+    .modal-header-full-width  {
+        border-bottom: 1px solid #9ea2a2 !important;
+    }
+
+    .modal-footer-full-width  {
+        border-top: 1px solid #9ea2a2 !important;
+    }
+    </style>
+
+    <!--Block head list-->
+    {% block head_list %}{% endblock %}
+{% endblock %}
+
+{% block content %}
+
+<div class="card {{ dshboard.card }}">
+        <div class="card-header">
+            <h3 class="card-title">
+                <i class="fas fa-search"></i>
+                {{ title }}
+            </h3>
+            <div class="card-tools">
+                <small>Su último acceso al sistema fue el {{ request.user.last_login }}</small>
+            </div>
+        </div>
+        <div class="card-body" style="display: block;">
+            <div class="container-fluid">
+                <!--Block content list-->
+                <div class="small-box bg-dark">
+                    <div class="inner">
+                        <span class="info-box-text text-center" > <h1>{{ curso.asignatura | upper }}</h1></span>
+                        <span class="info-box-number"> <h3> NIVEL: {{ curso.nivel | upper }} </h3></span>
+                        <span class="info-box-number"> <h4> PROFESOR: {{ curso.profesor | upper }} </h4></span>
+
+                    </div>
+                    <div class="icon">
+                      <i class="fa fa-book"></i>
+                    </div>
+                    
+                  </div>
+                        <!-- /.info-box-content -->
+                      </div>
+                      <section class="content">
+                        <div class="container-fluid">
+                          <div class="row">
+                            <div class="col-md-3">
+                  
+                              <!-- Profile Image -->
+                              <!--ELIMINAR
+                              <div class="card card-primary card-outline">
+                                <div class="card-body box-profile">
+                                  <div class="text-center">
+                                    <img class="profile-user-img img-fluid img-circle" src="{{ info.icon_image.url }}" alt="Icono">
+                                  </div>
+                  
+                                  <h3 class="profile-username text-center">{{info.name}}</h3>
+                  
+                                  <p class="text-muted text-center">ESCUELA</p>
+                                </div>
+                               
+                              </div>-->
+                              
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-12">
+                              <div class="card">
+                                <div class="card-header p-2">
+                                  <ul class="nav nav-pills">
+                                    <li class="nav-item"><a class="nav-link active" href="#foro" data-toggle="tab">Foro</a></li>
+                                    
+                                    {% if request.session.group.name != 'Estudiante'%}
+                                    <li class="nav-item"><a class="nav-link " href="#activity" data-toggle="tab">Matrículas</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Alumnos</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Asistencia</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#verAsistencia" data-toggle="tab">Ver Asistencia</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#silabo" data-toggle="tab"> Actividades</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#deberes" data-toggle="tab"> Crear Deberes</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#verDeberes" data-toggle="tab">Notas</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#veReportes" data-toggle="tab">Ver Reportes</a></li>                                    
+                                    {% endif %}
+                                    {% if request.session.group.name == 'Estudiante'%}
+                                    <li class="nav-item"><a class="nav-link" href="#veReportesIndividuales" data-toggle="tab">Ver Reportes Individuales</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#veAsistenciaIndividuales" data-toggle="tab">Ver Asistencia Individuales</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#notasestudiante" data-toggle="tab">Ver Notas</a></li>
+                                    
+                                    {% endif %}
+                                  
+                                  </ul>
+                                </div><!-- /.card-header -->
+                                <div class="card-body">
+                                  <div class="tab-content">
+
+                                    <!-- DEBERES FORO-->
+                                    <div class="tab-pane active" id="foro">
+                                      <div class="post">
+                                        <div class="card card-info">
+                                          <div class="card-header">
+                                            <h5>Crear Publicación</h4>
+                                          </div>
+                                          <div class="card-body">
+                                            <form class="form" method="post" enctype="multipart/form-data" id="frmMessage"
+                                              data-url="{{ list_url }}">
+
+                                              {% csrf_token %}
+                                              <div class="row">
+                                                {% for field in formPost.visible_fields %}
+                                    
+                                                <div class="col-md-10">
+                                                  
+                                                  <div class="form-group">
+                                                          {{ field }}
+                                                      </div>
+                                                </div>
+                                                {% endfor %}
+
+                                                <div class="col-md-2">
+                                                  <button type="submit" class="btn btn-info">Publicar</button>
+                                                </div>
+                                              </div>
+                                          </form>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      {% if post %}
+                                      {% for a in post %}
+                                      <div class="post">
+                                        <div class="user-block">
+                                          <img class="img-circle img-bordered-sm" src=" {{a.user.get_image}} " alt="user image">
+                                          <span class="username">
+                                            <a href="#"> {{ a.username }} </a>
+                                            <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
+                                          </span>
+                                          <span class="description">Publicacion - {{ a.creada_en }} </span>
+                                        </div>
+                                        <!-- /.user-block -->
+                                        <p>
+                                          {{ a.publicacion }}
+                                        </p>
+                                      </div>
+                                      {% endfor %}
+                                      {% endif %}
+                                    </div>
+                                    <!-- END DEBERES -->
+                                    
+                                    <!-- MATRICULA -->
+                                    {% if request.session.group.name != 'Estudiante'%}
+                                    <div class="tab-pane" id="activity">
+                                      <!-- Post -->
+                                      <div class="post">
+                                        <div class="card card-info">
+                                          <form class="form" id="frmForm" method="POST"
+                                          data-url="{{ list_url }}">
+
+                                          {% csrf_token %}
+
+                                            <div class="card-header">
+                                              <h3 class="card-title"> {{titulo}} </h3>
+                                            </div>
+                                            <!-- /.card-header -->
+                                            <div class="card-body">
+                                              <!-- form start -->
+                                        
+                                               
+                                                  {% for field in form.visible_fields %}
+                                                  <div class="form-group">
+                                                          <label><b>{{ field.label }}:</b></label>
+                                                          {{ field }}
+                                                  </div>
+                                                  {% endfor %}
+                                                  
+                                                  <div class="text-center">
+                                                    <button type="submit" class="btn btn-primary btn-flat">
+                                                      <i class="fas fa-save" aria-hidden="true"></i> Guardar registro
+                                                    </button>
+                                                  </div>
+                                            </div>
+                                          </form>
+
+                                        </div>
+                                      </div>
+                                      <!-- /.post -->
+                                    </div>
+                                    {% endif %}
+                                    <!-- END MATRICULA -->
+                                    
+                                    <!-- ESTUDIANTES MATRICULADOS-->
+                                    {% if request.session.group.name != 'Estudiante'%}
+                                    <div class="tab-pane" id="timeline">
+                                      <div class="timeline timeline-inverse">
+                                        
+                                        <div class="time-label"></div>
+                                        <div class="small-box bg-info">
+                                          <a href="{% url 'sale_invoice_pdf' cursos %}" target="_blank" class="small-box-footer">
+                                            Descargar Lista Alumnos 
+                                          </a>
+                                      </div>
+                                        
+                                        {% if count  <= 0 %}
+                                        <div class="small-box bg-warning">
+                                            <div class="inner">
+                                              <p>No hay Alumnos Matriculados</p>
+                                            </div>
+                                            <div class="icon">
+                                              <i class="fas fa-user-plus"></i>
+                                            </div>
+                                            <a href="#" class="small-box-footer">
+                                              Debes Agregar Estudiante 
+                                            </a>
+                                        </div> 
+                                    
+                                        {% else %}
+                                            <div>
+                                              <i class="fa fa-users bg-info"></i>
+                                              <div class="timeline-item">
+                                                <h3 class="timeline-header border-0"><a href="#">Total de Estudiantes: {{count}} </a> 
+                                                </h3>
+                                              </div>
+                                            </div>
+                                            {% for a in matricula %}
+                                            <div>
+                                              <i class="fas fa-user bg-info"></i>
+                                              <div class="timeline-item">
+                                                <h3 class="timeline-header border-0"><a href="#">{{a.estudiante.user.last_name}} {{a.estudiante.user.first_name}}</a> 
+                                                </h3>
+                                              </div>
+                                            </div>
+                                            {% endfor%}
+                                        {% endif%}
+                                      </div>  
+                                    </div>                                      
+                                    {% endif %}
+                                    <!-- END ESTUDIANTES -->
+
+                                    <!-- ASISTENCIA -->
+                                    {% if request.session.group.name != 'Estudiante'%}
+                                    
+                                    <div class="tab-pane" id="settings">
+                                      <div class="card card-info">
+                                        <form class="form" method="post" enctype="multipart/form-data" id="frmAsistencia"
+                                    data-url="{{ list_url }}">
+
+                                        <div class="card-header">
+                                          <h3 class="card-title"> Asistencia </h3>
+                                        </div>
+                                        <div class="card-body">
+
+                                          <table class="table">
+                                            <thead class="thead-info">
+                                              <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Nombre</th>
+                                                <th scope="col">Apellido</th>
+                                                <th scope="col" class="text-center">Asistencia</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              {% for l in matricula %}
+                                              <tr>
+                                                {% csrf_token %}
+                                                <input type="hidden" name="action" id="action" value="{{ action }}">
+                                                
+                                                <th scope="row"> {{ forloop.counter }} </th>
+                                                <td> {{ l.estudiante.user.first_name }} </td>
+                                                <td>{{ l.estudiante.user.last_name }}</td>
+                                                <td class="text-center">
+                                                  <input type="checkbox" name="checks[]" value="{{l.estudiante.id}}"> 
+                                                </td>
+                                              </tr>
+                                              {% endfor %}
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                        <div class="card-footer">
+                                          {% if count > 0 %}
+                                          <button type="submit" class="btn btn-primary btn-flat">
+                                            <i class="fas fa-save" aria-hidden="true"></i> Guardar registro
+                                        </button>
+                                        {% endif%}
+                                        </div>
+                                         </form>
+
+                                      </div>
+                                    </div>
+                                    {% endif %}
+                                    <!-- END ASISTENCIAS -->
+                                    
+
+                                     <!-- VER ASISTENCIAS -->
+                                     {% if request.session.group.name != 'Estudiante'%}
+                                    
+                                     <div class="tab-pane" id="verAsistencia">
+                                       <div class="card card-info">
+                                         <form class="form" method="post" enctype="multipart/form-data" id="frmAsistencia"
+                                     data-url="{{ list_url }}">
+ 
+                                         <div class="card-header">
+                                           <div class="row">
+                                            <div class="col-6">
+                                              <h3 class="card-title"> Asistencias </h3>
+                                            </div>
+                                            <div class="col-6">
+                                              <a href="{% url 'sale_invoiceList_pdf' cursos %}" target="_blank" class="small-box-footer float-right">
+                                                <i class="fas fa-file-pdf"> Descargar Asistencia</i>  
+                                              </a>
+                                            </div>
+                                           </div>
+                                         </div>
+                                         <div class="card-body" style="display: block;">
+                                            <div class="container-fluid">
+                                              <table class="table table-bordered table-striped" id="data" width="100%">
+                                                <thead class="thead-info">
+                                                  <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Apellido</th>
+                                                    <th scope="col" class="text-center">Fecha</th>
+                                                    <th scope="col" class="text-center">Asistencia</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                  {% for l in asistencias %}
+                                                  <tr>
+                                                    
+                                                    <th scope="row"> {{ forloop.counter }} </th>
+                                                    <td> {{ l.estudiant.user.first_name }} </td>
+                                                    <td>{{ l.estudiant.user.last_name }}</td>
+                                                    <td class="text-center">
+                                                     {{ l.creada_en | date:"M/d"|lower }}
+                                                    </td>
+                                                    <td>Asistencia</td>
+                                                  </tr>
+                                                  {% endfor %}
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                         </div>
+                                         <div class="card-footer">
+                                           
+                                         </div>
+                                          </form>
+ 
+                                       </div>
+                                     </div>
+                                     {% endif %}
+                                     <!-- END VER ASISTENCIAS -->
+
+                                    <!-- CREAR DEBERES -->
+                                    {% if request.session.group.name != 'Estudiante'%}
+                                    
+                                    <div class="tab-pane" id="deberes">
+                                      <div class="card card-info">
+                                    
+
+                                        <div class="card-header">
+                                          <h3 class="card-title"> Deberes </h3>
+                                        </div>
+                                        <div class="card-body">
+                                          <form class="form" method="post" enctype="multipart/form-data" id="frmCrearTarea"
+                                              data-url="{{ list_url }}">
+
+                                              {% csrf_token %}
+                                              <div class="row">
+                                                
+                                                <div class="col-12">
+                                                  <div class="form-group">
+                                                    <select name="silabo" required class="form-control" id="id_silabo">
+                                                      <option value="" disabled selected>--- Seleccione una Actividad ---</option>
+                                                      {% for m in silabos %}
+                                                      <option value="{{m.id}}" selected >{{ m.descripcion }} </option>
+                                                      {% endfor %}
+                                                    </select>
+                                                  </div>
+                                                </div>
+                                                {% for field in formCrearTarea.visible_fields %}
+                                    
+                                                <div class="col-md-12">
+                                                  
+                                                  <div class="form-group">
+                                                          {{ field }}
+                                                      </div>
+                                                </div>
+                                                {% endfor %}
+                                                
+                                                <div class="col-md-12">
+                                                  <button type="submit" class="btn btn-info">Crear Tarea</button>
+                                                </div>
+                                              </div>
+                                          </form>
+                                        </div>
+                                       
+                                        
+                                      </div>
+                                    </div>
+                                    {% endif %}
+                                    <!-- END DEBERES -->
+                                    
+
+                                   <!-- VER EDITAR NOTAS -->
+                                   {% if request.session.group.name != 'Estudiante'%}
+                                    
+                                   <div class="tab-pane" id="verDeberes">
+                                     <div class="card card-info">
+                                       <div class="card-header">
+                                         <h3 class="card-title"> DEBERES </h3>
+                                       </div>
+                                       <div class="card-body" style="display: block;">
+                                          <div class="container-fluid">
+                                                          
+                                            <table class="table table-bordered table-striped" id="data2" width="100%">
+                                              <thead class="thead-info">
+                                                <tr>
+                                                  <th scope="col">#</th>
+                                                  <th scope="col">Tema</th>
+                                                  <th scope="col">Estudiante</th>
+                                                  <th scope="col">Nota</th>
+                                                  <th scope="col">Fecha Inicio</th>
+                                                  <th scope="col">Fecha Fin</th>
+                                                  <th scope="col">Juego </th>
+                                                  <th scope="col">Tarea Entregada</th>
+                                                  <th scope="col">Opciones</th>
+
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                {% for l in tareas %}
+                                                       
+                                                <tr>
+                                                  <td scope="row"> {{ forloop.counter }} </td>
+                                                  <td> {{ l.tarea.name }} </td>
+                                                 
+                                                  <td> {{ l.estudiante.user.first_name }} {{ l.estudiante.user.last_name }}</td>
+                                                  <td> {{ l.nota }} </td>
+                                                  <td> {{ l.creada_en }} </td>
+                                                  <td> {{ l.creada_en | date:"M/d"|lower }} </td>
+                                                  <td class="text-center">
+                                                    {% if l.tarea.juego.url %}
+                                                    <a href="{{ l.tarea.juego.url }}" target="_blank">
+                                                      <i class="fa fa-gamepad nav-icon"></i>
+                                                    </a>
+                                                    {% else %}
+                                                    <p>No hay Juego</p>
+                                                    {% endif %}
+                                                  </td>
+                                                  <td class="text-center"> 
+                                                    {% if l.archivo %}
+                                                      <a href=" ../../../../media/{{ l.archivo }} " target="_blank"><i class="fas fa-file-pdf"></i> Ver Tarea</a>
+                                                    {% else %}
+                                                    <p>No hay una tarea Subida.</p>
+                                                    {% endif %}
+                                                  </td>
+                                                  <td>
+                                                    <div class="dropdown text-center">
+                                                      <button
+                                                        class="btn btn-secondary dropdown-toggle"
+                                                        type="button"
+                                                        id="dropdownMenu2"
+                                                        data-toggle="dropdown"
+                                                        aria-haspopup="true"
+                                                        aria-expanded="false"
+                                                      >
+                                                        Menù
+                                                      </button>
+                                                      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                        <a
+                                                          id="modalActivate" type="button"
+                                                          data-toggle="modal" data-target="#exampleModalPreview-{{l.id}} "
+                                                          data-toggle="tooltip"
+                                                          title="Editar registro"
+                                                          class="dropdown-item"
+                                                        >
+                                                          <i class="fas fa-edit"> Cambiar Nota</i>
+                                                        </a>
+
+                                                        <a
+                                                          id="modalActivate" type="button"
+                                                          data-toggle="modal" data-target="#exampleModalPreview-rec{{l.id}} "
+                                                          data-toggle="tooltip"
+                                                          title="Recuperación"
+                                                          class="dropdown-item"
+                                                        >
+                                                          <i class="fas fa-edit"> Recuperación </i>
+                                                        </a>
+                                                      </div>
+                                                    </div>
+                                                    <!-- Modal update nota -->
+                                                <div class="modal fade right" id="exampleModalPreview-{{l.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+                                                  <div class="modal-dialog modal-dialog momodel modal-fluid" role="document">
+                                                      <div class="modal-content modal-content ">
+                                                          <div class=" modal-header   modal-header text-center">
+                                                              <h5 class="modal-title w-100" id="exampleModalPreviewLabel"> Nota del estudiante  : {{ l.estudiante.user.first_name }} {{ l.estudiante.user.last_name }} </h5>
+                                                              <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                                                                  <span style="font-size: 1.3em;" aria-hidden="true">&times;</span>
+                                                              </button>
+                                                          </div>
+                                                          <form class="form" method="POST" enctype="multipart/form-data"  action="{% url 'update_nota' l.tarea_id %}">                                                  
+                                                            <div class="modal-body">
+
+                                                                    <input type="hidden" name="id_tarea" id="id_tarea" value="{{ l.tarea_id }}">
+
+                                                                    <input type="hidden" name="id_estudiante" id="id_estudiante" value="{{ l.estudiante.id }}">
+          
+                                                                    {% csrf_token %}
+
+                                                                    {% for field in tareaForm.visible_fields %}
+                                                        
+                                                                    <div class="col-md-12">
+                                                                      
+                                                                      <div class="form-group">
+                                                                              {{ field|add_class:'form-control select2'|attr:'autocomplete:off' }}
+                                                                          </div>
+                                                                    </div>
+                                                                    {% endfor %}
+                                                                <div class="modal-footer">
+                                                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                                                  <button type="submit" class="btn btn-success">Aceptar</button>
+                                                              </div>
+
+                                                                
+                                                            </div>
+                                                          </form>
+                                                      </div>
+                                                  </div>
+                                                </div>
+
+
+                                                 <!-- Modal recuperacion -->
+                                                 <div class="modal fade right" id="exampleModalPreview-rec{{l.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+                                                  <div class="modal-dialog modal-dialog momodel modal-fluid" role="document">
+                                                      <div class="modal-content modal-content ">
+                                                          <div class=" modal-header   modal-header text-center">
+                                                              <h5 class="modal-title w-100" id="exampleModalPreviewLabel"> Estudiante  : {{ l.estudiante.user.first_name }} {{ l.estudiante.user.last_name }} </h5>
+                                                              <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                                                                  <span style="font-size: 1.3em;" aria-hidden="true">&times;</span>
+                                                              </button>
+                                                          </div>
+                                                          <form class="form" method="POST" enctype="multipart/form-data"  action="{% url 'update_recuperacion' l.tarea_id %}">                                                  
+                                                            <div class="modal-body">
+
+                                                                    <input type="hidden" name="id_tarea" id="id_tarea" value="{{ l.tarea_id }}">
+
+                                                                    <input type="hidden" name="id_estudiante" id="id_estudiante" value="{{ l.estudiante.id }}">
+          
+                                                                    {% csrf_token %}
+
+                                                                    {% for field in TareaRecForm.visible_fields %}
+                                                        
+                                                                    <div class="col-md-12">
+                                                                      
+                                                                      <div class="form-group">
+                                                                              {{ field }}
+                                                                          </div>
+                                                                    </div>
+                                                                    {% endfor %}
+                                                                <div class="modal-footer">
+                                                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                                                  <button type="submit" class="btn btn-success">Aceptar</button>
+                                                              </div>
+
+                                                                
+                                                            </div>
+                                                          </form>
+                                                      </div>
+                                                  </div>
+                                                </div>
+                                                  </td>
+                                                </tr>
+                                              
+                                                {% endfor %}
+                                              </tbody>
+                                            </table>
+
+
+                                          </div>
+                                       </div>
+                                       <div class="card-footer">
+                                         
+                                       </div>
+
+                                     </div>
+                                   </div>
+                                   {% endif %}
+                                   <!-- END EDITAR NOTAS -->
+
+                                  <!-- VER REPORTES -->
+                                  {% if request.session.group.name != 'Estudiante'%}
+
+                                  <div class="tab-pane" id="veReportes">
+                                    <div class="card card-info">
+                                      
+                                      <div class="card-header">
+                                        <div class="row">
+                                          <div class="col-6">
+                                            <h3 class="card-title"> REPORTES </h3>
+                                          </div>
+                                          <div class="col-6">
+                                            <a href="{% url 'sale_invoiceNotas_pdf' cursos %}" target="_blank" class="small-box-footer float-right">
+                                              <i class="fas fa-file-pdf"> Descargar Notas</i>  
+                                            </a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="card-body" style="display: block;">
+                                        <div class="container-fluid">
+                                          <table class="table table-bordered table-striped" id="data" width="100%">
+                                            <thead class="thead-info">
+                                              <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Tema</th>
+                                                <th scope="col">Juego</th>
+                                                <th scope="col">Estudiante</th>
+                                                <th scope="col">Fecha</th>
+                                                <th scope="col">Nota</th>
+
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              {% for l in tareas %}
+                                              <tr>
+                                                
+                                                <th scope="row"> {{ forloop.counter }} </th>
+                                                <td> {{ l.tarea.name }} </td>
+                                                <td class="text-center">
+                                                  {% if l.tarea.juego.url %}
+                                                  <a href="{{ l.tarea.juego.url }}" target="_blank">
+                                                    <i class="fa fa-gamepad nav-icon"></i>
+                                                  </a>
+                                                  {% else %}
+                                                  <p>No hay Juego</p>
+                                                  {% endif %}
+                                                </td>
+                                                <td> {{ l.estudiante.user.first_name }} {{ l.estudiante.user.last_name }}</td>
+                                                <td> {{ l.creada_en | date:"M/d"|lower }} </td>
+                                            
+                                                <td> {{ l.nota }} </td>
+
+                                          
+                                              </tr>
+                                              <!-- Modal Juego de Memoria -->
+                                              <div class="modal fade right" id="exampleModalPreview-{{l.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog momodel modal-fluid" role="document">
+                                                    <div class="modal-content modal-content ">
+                                                        <div class=" modal-header   modal-header text-center">
+                                                            <h5 class="modal-title w-100" id="exampleModalPreviewLabel"> Nota del estudiante  : {{ l.estudiante.user.first_name }} {{ l.estudiante.user.last_name }} </h5>
+                                                            <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                                                                <span style="font-size: 1.3em;" aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form class="form" method="post" enctype="multipart/form-data" id="frmCambiarNota"
+                                 data-url="{{ list_url }}">
+                                                       <input type="hidden" name="id_tarea" id="id_tarea" value="{{ l.tarea_id }}">
+
+                                                        <div class="modal-body">
+                                                          {% csrf_token %}
+                                                          <div class="row">
+                                                            {% for field in tareaForm.visible_fields %}
+                                                
+                                                            <div class="col-md-12">
+                                                              
+                                                              <div class="form-group">
+                                                                      {{ field|add_class:'form-control select2'|attr:'autocomplete:off' }}
+                                                                  </div>
+                                                            </div>
+                                                            {% endfor %}
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                                          <button type="submit" class="btn btn-success">Aceptar</button>
+                                                      </div>
+                                              </form>
+
+                                                        
+                                                    </div>
+                                                </div>
+                                              </div>
+
+                                              {% endfor %}
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                      </div>
+                                      <div class="card-footer">
+                                      </div>
+                                    </div>
+                                  </div>
+                                  {% endif %}
+                                  <!-- END VER REPORTES -->
+
+                                  <!-- VER TAREAS INDIVIDUALES ESTUDIANTE-->
+                                  {% if request.session.group.name == 'Estudiante'%}
+
+                                  <div class="tab-pane" id="veReportesIndividuales">
+                                    <div class="card card-info">
+                                      
+                                      <div class="card-header">
+                                        <h3 class="card-title"> Nota: {{ acumulador }}  </h3>
+                                      </div>
+                                      <div class="card-body" style="display: block;">
+                                        <div class="container-fluid">
+                                          <table class="table table-bordered table-striped" id="data" width="100%">
+                                            <thead class="thead-info">
+                                              <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Tema</th>
+                                                <th scope="col">Juego</th>
+                                                <th scope="col">Archivo Ayuda</th>
+                                                <th scope="col">Fecha</th>
+                                                <th scope="col">Aprendizaje</th>
+                                                <th scope="col">Video</th>
+                                                <th scope="col">Nota</th>
+                                                <th scope="col">Archivo</th>
+  
+                                                <th scope="col">Subir Tarea</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              {% for l in tareasIndividual %}
+                                              <tr>
+                                                
+                                                <th scope="row"> {{ forloop.counter }} </th>
+                                                <td> {{ l.tarea.name }} </td>
+                                                <td class="text-center">
+                                                  {% if l.tarea.silabo.juego.url %}
+                                                    {% if date > l.creada_en %}
+                                                    <div class="alert alert-danger text-center" role="alert">
+                                                      Fecha limite 
+                                                    </div>
+                                                    {% else %}
+                                                    <a href="{{ l.tarea.silabo.juego.url }}" target="_blank">
+                                                      <i class="fa fa-gamepad nav-icon"></i>
+                                                    </a>
+                                                    {% endif %}
+                                                  {% else %}
+                                                    <div class="alert alert-danger text-center" role="alert">
+                                                      No hay un juego 
+                                                    </div>
+                                                  {% endif %}
+                                                </td>
+                                                <td>
+                                                  {% if l.tarea.silabo.archivo %}
+                                                      <a href=" ../../../../media/{{ l.tarea.silabo.archivo }} " target="_blank"><i class="fas fa-file-pdf"></i> Ver Tarea</a>
+                                                    {% else %}
+                                                    <p>No hay un Archivo subido.</p>
+                                                    {% endif %}
+                                                </td>
+                                                <td> {{ l.creada_en | date:"M/d"|lower }} </td>
+                                                <td class="text-center"> 
+                                                  {% if l.tarea.silabo.claseDemo %}
+                                                  
+                                                  <a href="{% url l.tarea.silabo.claseDemo %}" target="_blank">
+                                                    <i class="fa fa-gamepad nav-icon"></i></a>
+                                                  {% else %}
+                                                  <p>No hay página.</p>
+                                                  {% endif %}
+                                                </td>
+                                                <td class="text-center"> 
+                                                  {% if l.tarea.silabo.url %}
+                                                  
+                                                  <a href="{{ l.tarea.silabo.url }}" target="_blank">
+                                                    <i class="fa fa-gamepad nav-icon"></i></a>
+                                                  {% else %}
+                                                  <p>No hay video.</p>
+                                                  {% endif %}
+                                                </td>
+                                                <td> {{ l.nota }} </td>
+                                                <td>
+                                                    {% if l.archivo %}
+                                                      <a href=" ../../../../media/{{ l.archivo }} " target="_blank"><i class="fas fa-file-pdf"></i></a>
+                                                    {% else %}
+                                                    <p>No hay una tarea Subida.</p>
+                                                    {% endif %}
+                                                  
+                                                </td>
+                                                <td> 
+                                                  {% if date > l.creada_en %}
+                                                  <div class="alert alert-danger text-center" role="alert">
+                                                    Fecha limite 
+                                                  </div>
+                                                  {% else %}
+                                                  <div class="dropdown text-center">
+                                                    <button
+                                                      class="btn btn-secondary dropdown-toggle"
+                                                      type="button"
+                                                      id="dropdownMenu2"
+                                                      data-toggle="dropdown"
+                                                      aria-haspopup="true"
+                                                      aria-expanded="false"
+                                                    >
+                                                      Menù
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                      <a
+                                                        id="modalActivate" type="button"
+                                                        data-toggle="modal" data-target="#exampleModalPreview-tarea{{l.id}} "
+                                                        data-toggle="tooltip"
+                                                        title="Editar registro"
+                                                        class="dropdown-item"
+                                                      >
+                                                        <i class="fas fa-edit"> Subir Tarea</i>
+                                                      </a>
+                                                    </div>
+                                                  </div>
+                                                  {% endif %}
+                                                </td>
+                                              </tr>
+                                              <!-- Modal Juego de Memoria -->
+                                              <div class="modal fade right" id="exampleModalPreview-tarea{{l.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog momodel modal-fluid" role="document">
+                                                    <div class="modal-content modal-content ">
+                                                        <div class=" modal-header   modal-header text-center">
+                                                            <h5 class="modal-title w-100" id="exampleModalPreviewLabel"> Estudiante  : {{ l.estudiante.user.first_name }} {{ l.estudiante.user.last_name }} </h5>
+                                                            <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                                                                <span style="font-size: 1.3em;" aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form class="form" method="POST" enctype="multipart/form-data"  action="{% url 'update_file' l.tarea_id %}"
+                                                         data-url="{{ list_url }}">
+                                                         <input  name="id_tarea" id="id_tarea" hidden="hidden" value="{{ l.tarea_id }}">
+                                                        <input type="hidden" name="id_estudiante" id="id_estudiante" value="{{ l.estudiante.id }}">
+
+                                                        <div class="modal-body">
+                                                          {% csrf_token %}
+                                                          <div class="row">
+                                                            {% for field in formFIleTarea.visible_fields %}
+                                                
+                                                            <div class="col-md-12">
+                                                              
+                                                              <div class="form-group">
+                                                                      {{ field|add_class:'form-control select2'|attr:'autocomplete:off' }}
+                                                                  </div>
+                                                            </div>
+                                                            {% endfor %}
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                                          <button type="submit" class="btn btn-success">Aceptar</button>
+                                                      </div>
+                                              </form>
+
+                                                        
+                                                    </div>
+                                                </div>
+                                              </div>
+
+                                              {% endfor %}
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  {% endif %}
+                                  <!-- END VER REPORTES INDIVIDUALES -->
+
+                                  <!-- SILABO -->
+
+                                  {% if request.session.group.name != 'Estudiante'%}
+
+                                  <div class="tab-pane" id="silabo">
+                                    <div class="card card-info">
+                                      
+                                      <div class="card-header">
+                                        <h3 class="card-title"> Actividades </h3>
+                                      </div>
+                                      <div class="card-body" style="display: block;">
+                                        <div class="container-fluid">
+                                          <!--boton agregar silabo-->
+                                          <div class="row">
+                                            <div class="col-md-6">
+                                              <a
+                                              id="modalActivate" type="button"
+                                              data-toggle="modal" data-target="#exampleModalPreview-SILABO"
+                                              data-toggle="tooltip"
+                                              title="Editar registro"
+                                              class="btn btn-primary"
+                                            >
+                                              AGREGAR ACTIVIDAD <i class="fas fa-edit"></i>
+                                           
+                                              
+                                        </a>
+               
+                                            </div>
+                                            {% block box_footer_add_button %}
+                                                <a class="btn btn-info btn-flat btnUpload">
+                                                    <i class="fas fa-upload"></i> Subir Excel de Estudiantes
+                                                </a>
+                                            {% endblock %}
+                                      
+                                          </div>
+                                          <!--MODAL CREAR ACTIVIDAD-->
+                                          <div class="modal fade right" id="exampleModalPreview-SILABO" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog momodel modal-fluid" role="document">
+                                                <div class="modal-content modal-content ">
+                                                    <div class=" modal-header   modal-header text-center">
+                                                        <h5 class="modal-title w-100" id="exampleModalPreviewLabel">Actividades</h5>
+                                                        <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                                                            <span style="font-size: 1.3em;" aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    
+                                                      <form class="form" method="post" enctype="multipart/form-data" id="frmSilabo"
+                                                      data-url="{{ list_url }}">
+                                                      <div class="modal-body"> 
+                                                      {% csrf_token %}
+                                                      <div class="row">
+                                                        {% for field in silaboForm.visible_fields %}
+                                            
+                                                        <div class="col-md-6">
+                                                          
+                                                          <div class="form-group">
+                                                              <label>{{ field.label }}:</label>
+                                                              {{ field |add_class:'form-control'|attr:"autocomplete:off"}}
+                                    
+                                                              </div>
+                                                              
+                                                        </div>
+                                                        {% endfor %}
+                                                        <div class="col-md-6">
+                                                          <label >Página Web</label>
+                                                          <select class=" form-control" aria-label="Default select example" name="id_claseDemo", id="id_claseDemo"  >
+                                                            <option selected >Seleccione </option>
+                                                            <option value="indexJuego">Tercero Básica</option>
+                                                        <br>
+                                                          </select>
+
+                                                        </div>
+                                                        
+                                                        <input type="text" value="Evaluacion" name="eva" id="eva" hidden="hidden">
+                                                        <div class="col-md-12">
+                                                          <br>
+                                                          <button type="submit" class="btn btn-info">Guardar</button>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </form>
+                                                </div>
+                                            </div>
+                                          </div>
+                                            
+                                          <!-- LISTADO DE SILABO -->
+                                          <br>
+                                          <div class="container">
+                                            <div class="row">
+                                              <div class="col-md-12">
+                                                <div class="card">
+                                                  <div class="card-body">
+                                                    <div class="table-responsive">
+
+                                                      <table class="table  table-bordered table-striped" id="datatable">
+                                                        <thead class="thead-info">
+                                                          <tr>
+                                                          
+                                                            <th scope="col">Actividad</th>
+                                                            <th scope="col">Descripción</th>
+                                                            <th scope="col">Juego</th>
+                                                            <th scope="col">Aprendizaje</th>
+                                                            <th scope="col">Videos</th>
+                                                            <th scope="col">Archivo</th>
+                                                            <th scope="col">Opciones</th>
+                                                          </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                          {% for l in silabo %}
+                                                          <tr>
+                                                            
+                                                            
+                                                            <td> {{ l.actividad }} </td>
+                                                            <td> {{ l.descripcion }} </td>
+                                                            
+                                                            <td class="text-center"> 
+                                                              {% if l.juego.url %}
+                                                              
+                                                              <a href="{{ l.juego.url }}" target="_blank">
+                                                                <i class="fa fa-gamepad nav-icon"></i></a>
+                                                              {% else %}
+                                                              <p>No hay juego.</p>
+                                                              {% endif %}
+                                                            </td>
+                                                            <td class="text-center"> 
+                                                              {% if l.claseDemo %}
+                                                              
+                                                              <a href="{% url l.claseDemo %}" target="_blank">
+                                                                <i class="fa fa-gamepad nav-icon"></i></a>
+                                                              {% else %}
+                                                              <p>No hay juego.</p>
+                                                              {% endif %}
+                                                            </td>
+                                                            <td class="text-center"> 
+                                                              {% if l.url %}
+                                                              
+                                                              <a href="{{ l.url }}" target="_blank">
+                                                                <i class="fa fa-play" aria-hidden="true"></i>
+
+                                                              {% else %}
+                                                              <p>No hay video.</p>
+                                                              {% endif %}
+                                                            </td>
+                                                            <td class="text-center"> 
+                                                              {% if l.archivo %}
+                                                                <a href=" ../../../../media/{{ l.archivo }} " target="_blank"><i class="fas fa-file-pdf"></i> Ver Archivo</a>
+                                                              {% else %}
+                                                              <p>No Archivo.</p>
+                                                              {% endif %}
+                                                            </td>
+                                                            <td> 
+                                                              <a
+                                                              id="modalActivate" type="button"
+                                                              data-toggle="modal" data-target="#exampleModalPreview-silabo{{l.id}}"
+                                                              data-toggle="tooltip"
+                                                              title="Editar registro"
+                                                              class="btn btn-warning"
+                                                            >
+                                                               <i class="fas fa-edit"></i>
+                                                            </a>
+                                                              
+                                                            <a
+                                                            href="{% url 'delete_silabo' l.id %}"
+                                                            title="Eliminar registro"
+                                                            class="btn btn-danger"
+                                                            >
+                                                              <i class="fas fa-trash-alt"></i>
+                                                            </a>
+
+                                                            </td>
+                                                          </tr>
+                                                          <!-- Modal Juego de Memoria -->
+                                                          <div class="modal fade right" id="exampleModalPreview-silabo{{l.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog momodel modal-fluid" role="document">
+                                                                <div class="modal-content modal-content ">
+                                                                    <div class=" modal-header   modal-header text-center">
+                                                                        <h5 class="modal-title w-100" id="exampleModalPreviewLabel"> Actividad </h5>
+                                                                        <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                                                                            <span style="font-size: 1.3em;" aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <!--EDITAR ACTIVIDAD-->
+                                                                    <form class="form" method="POST" enctype="multipart/form-data"  action="{% url 'update_silabo' l.id %}"
+                                                                       data-url="{{ list_url }}">
+                                                                      <div class="modal-body">
+                                                                          {% csrf_token %}
+                                                                            <input type="text" hidden id="id_id" name="id_id" value="{{ l.id }}">
+                                                                            <label> Actividad</label>
+                                                                            <input type="text" class="form-control" name="editActividad" id="editActividad" value=" {{ l.actividad }} ">
+                                                                            <label> Descripción </label>
+                                                                            <input type="text" class="form-control" name="editDescripcion" id="editDescripcion" value=" {{ l.descripcion }} ">
+                                                                            <label> Link</label>
+                                                                            <input type="text" class="form-control" name="editLink" id="editLink" value=" {{ l.url }} ">
+                                                                            <label> Juego </label>
+                                                                            <select name="id_juego" required class="form-control" id="id_juego">
+                                                                              <option value="" disabled selected>--- Seleccione un Juego ---</option>
+                                                                              {% for m in juegos %}
+                                                                              <option value="{{m.id}}" selected >{{ m.name }} </option>
+                                                                              {% endfor %}
+                                                                            </select>
+                                                                          <label> Archivo </label>
+                                                                          <input type="file" class="form-control" id="archivo" name="archivo">
+                                                                          {% if l.archivo %}<a href=" ../../../../media/{{l.archivo}}">  <b>Actualmente</b> {{l.archivo}}</a>{% else %}
+                                                                          <p>No existe archivo.</p>
+                                                                          {% endif %}
+                                                                        
+                                                                     
+                                                                          <br>
+                                                                          <label> Evaluación </label>
+                                                                          <input type="file" class="form-control" id="evaluacion" name="evaluacion">
+                                                                          {% if l.evaluacion %}<a href=" ../../../../media/{{l.evaluacion}}">  <b>Actualmente</b> {{l.evaluacion}}</a>
+                                                                          <p>No existe archivo.</p>
+                                                                          {% endif %}
+                                                                          <br>
+                                                                          <!--<label> Refuerzo </label>
+                                                                          <input type="file" class="form-control" id="refuerzo" name="refuerzo">
+                                                                          <a href=" ../../../../media/{{l.refuerzo}}">  <b>Actualmente</b> {{l.refuerzo}}</a>-->
+
+                                                                      </div>
+                                                                      <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                                                        <button type="submit" class="btn btn-success">Aceptar</button>
+                                                                    </div>
+                                                                    </div>
+                                                                     
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                          </div>
+            
+                                                          {% endfor %}
+                                                        </tbody>
+                                                      </table>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                
+                                              </div>
+                                            </div>
+                                          </div>
+                                         
+                                        </div>
+                                      </div>
+                                      <div class="card-footer">
+                                      </div>
+                                    </div>
+                                  </div>
+                                  {% endif %}
+                                  <!-- END VER SILABO -->
+
+                                  <!-- VER ASISTENCIAS INDIVIDUALES -->
+                                     {% if request.session.group.name == 'Estudiante'%}
+                                    
+                                     <div class="tab-pane" id="veAsistenciaIndividuales">
+                                       <div class="card card-info">
+                                         <form class="form" method="post" enctype="multipart/form-data" id="frmAsistencia"
+                                     data-url="{{ list_url }}">
+ 
+                                         <div class="card-header">
+                                           <h3 class="card-title"> Asistencias </h3>
+                                         </div>
+                                         <div class="card-body" style="display: block;">
+                                            <div class="container-fluid">
+                                              <table class="table table-bordered table-striped" id="data" width="100%">
+                                                <thead class="thead-info">
+                                                  <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Apellido</th>
+                                                    <th scope="col" class="text-center">Asistencia</th>
+                                                    <th scope="col">Fecha</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                  {% for l in asistenciaIndividual %}
+                                                  <tr>
+                                                    
+                                                    <th scope="row"> {{ forloop.counter }} </th>
+                                                    <td> {{ l.estudiant.user.first_name }} </td>
+                                                    <td>{{ l.estudiant.user.last_name }}</td>
+                                                    <td class="text-center">
+                                                     <h5>asistencia</h5>
+                                                    </td>
+                                                    <td>{{ l.creada_en | date:"M/d"|lower }}</td>
+
+                                                  </tr>
+                                                  {% endfor %}
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                         </div>
+                                         <div class="card-footer">
+                                           
+                                         </div>
+                                          </form>
+ 
+                                       </div>
+                                     </div>
+                                     {% endif %}
+                                     <!-- END VER ASISTENCIAS -->
+
+                                      <!-- VER NOTAS INDIVIDUALES -->
+                                     {% if request.session.group.name == 'Estudiante'%}
+                                    
+                                     <div class="tab-pane" id="notasestudiante">
+                                       <div class="card card-info">
+                                         <form class="form" method="post" enctype="multipart/form-data" id="frmAsistencia"
+                                     data-url="{{ list_url }}">
+ 
+                                         <div class="card-header">
+                                           <h3 class="card-title"> NOTAS </h3>
+                                         </div>
+                                         <div class="card-body" style="display: block;">
+                                            <div class="container-fluid">
+                                                <h3 class="card-title bg-success"> Tabla de Notas:</h3>
+                                                <table class="table">
+                                                  <thead>
+                                                    <tr>
+                                                      <th scope="col">Quimestre</th>
+                                                      <th scope="col">Producto 1</th>
+                                                      <th scope="col">Producto 2</th>
+                                                      <th scope="col">Evaluacion</th>
+                                                      <th scope="col">Total</th>
+                                                    </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                    <tr>
+                                                      <th class="text-center" scope="row"> 1 </th>
+                                                      <td class="text-center">{{ notaP1 }}</td>
+                                                      <td class="text-center"> {{ notaP2 }} </td>
+                                                      <td class="text-center"> {{ notaEva }} </td>
+                                                      <td class="text-center">  {{ acumulador }}  </td>
+                                                    </tr>
+                                                    <tr>
+                                                      <th class="text-center" scope="row"> 2 </th>
+                                                      <td class="text-center">{{ notaP1Q2 }}</td>
+                                                      <td class="text-center"> {{ notaP2Q2 }} </td>
+                                                      <td class="text-center"> {{ notaEvaQ2 }} </td>
+                                                      <td class="text-center">  {{ acumuladorQ2 }}  </td>
+                                                    </tr>
+                                                    <tr>
+                                                      <th class="text-center" scope="row"> Promedio Final </th>
+                                                      <td class="text-center"></td>
+                                                      <td class="text-center">  </td>
+                                                      <td class="text-center">  </td>
+                                                      <td class="text-center">  {{ promedioFinal }}  </td>
+                                                    </tr>
+                                                    <tr> 
+                                                      <td class="text-center"><strong>El Estudiante:</strong></td>
+                                                      <td class="text-center">  </td>
+                                                      <td class="text-center">  </td>
+                                                      <td class="text-center">  </td>
+                                                      <td  class="text-center">
+                                                        {% if promediofinal < 7 %}
+                                                          <h5 style="color: green;">Aprueba</h5>
+                                                          {% else %}
+                                                          <h5 style="color: red;">Reprueba</h5>
+  
+                                                        {% endif %}                                                        
+                                                      </td></tr>
+                                                   
+                                                  </tbody>
+                                                </table>
+                                            </div>
+                                         </div>
+                                         <div class="card-footer">
+                                           
+                                         </div>
+                                          </form>
+ 
+                                       </div>
+                                     </div>
+                                     {% endif %}
+                                     <!-- END VER ASISTENCIAS -->
+
+
+                                  </div>  
+                                </div>
+                                    </div>
+                                   
+                                  </div>
+                                  <!-- /.tab-content -->
+                                </div><!-- /.card-body -->
+                              </div>
+                              <!-- /.card -->
+    </div>
+    
+
+        {% block box_footer_after %}{% endblock %}
+    {% block javascript_list %}
+    <div class="modal fade" id="myModalUploadExcel" tabindex="-1" role="dialog" aria-hidden="true">
+      <form method="post" id="frmUploadExcel" action=".">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">
+                          <b><i class="fas fa-upload"></i> Subir Cursos</b>
+                      </h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <div class="container-fluid">
+                          <div class="form-group">
+                              <label>Archivo de excel:</label>
+                              <input type="file" class="form-control"
+                                     accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                                     name="archive" autocomplete="off">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary btn-block btn-flat">
+                          <i class="fas fa-upload"></i> Subir excel
+                      </button>
+                  </div>
+              </div>
+          </div>
+      </form>
+  </div>
+        <script type="application/javascript">
+            var table;
+            $(function () {
+                table = $('#data').DataTable({
+                    responsive: true,
+                    autoWidth: false,
+                    destroy: true,
+                    initComplete: function (settings, json) {
+
+                    }
+                });
+                
+                $('.table')
+                    .on('draw', function () {
+                        $('[data-toggle="tooltip"]').tooltip();
+                    })
+                    .on('click', 'img', function () {
+                        var src = $(this).attr('src');
+                        load_image(src);
+                    });
+            });
+        </script>
+
+<script type="application/javascript">
+  var table;
+  $(function () {
+      table = $('#data2').DataTable({
+          responsive: true,
+          autoWidth: false,
+          destroy: true,
+          initComplete: function (settings, json) {
+
+          }
+      });
+
+      $('.table')
+          .on('draw', function () {
+              $('[data-toggle="tooltip"]').tooltip();
+          })
+          .on('click', 'img', function () {
+              var src = $(this).attr('src');
+              load_image(src);
+          });
+  });
+</script>
+
+<script type="application/javascript">
+  var table3;
+  $(function () {
+      table3 = $('#datatable').DataTable({
+          responsive: true,
+          autoWidth: false,
+          destroy: true,
+          initComplete: function (settings, json) {
+
+          }
+      });
+
+      $('.table')
+          .on('draw', function () {
+              $('[data-toggle="tooltip"]').tooltip();
+          })
+          .on('click', 'img', function () {
+              var src = $(this).attr('src');
+              load_image(src);
+          });
+  });
+</script>
+
+
+    {% endblock %}
+{% endblock %}

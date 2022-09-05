@@ -1,0 +1,98 @@
+{% extends 'skin.html' %}
+{% load static %}
+{% block head %}
+    <script src="{% static 'lib/highcharts-9.1.1/highcharts.js' %}"></script>
+    <script src="{% static 'lib/highcharts-9.1.1/modules/exporting.js' %}"></script>
+    <script src="{% static 'lib/highcharts-9.1.1/modules/export-data.js' %}"></script>
+    <script src="{% static 'lib/highcharts-9.1.1/modules/accessibility.js' %}"></script>
+{% endblock %}
+{% block breadcrumb %}
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+            
+            <div class="card card-widget widget-user">
+                <div class="widget-user-header bg-gray">
+                    <h3 class="widget-user-username">
+                        {{ mainpage.name }} ! Te da la bienvenida {{ request.user.get_full_name }}
+                    </h3>
+                    <h5 class="widget-user-desc">
+                        Su último acceso fue {{ request.user.last_login }}
+                    </h5>
+                </div>
+                <div class="widget-user-image">
+                    <img class="img-circle elevation-2" src="{{ request.user.get_image }}" alt="User Avatar">
+                </div>
+                <div class="card-footer" style="background-color: white;">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <img src="{% static 'img/default/blog.jpg' %}" style="width: 80%;"
+                                 class="img-fluid d-block mx-auto mb-12">
+                                 <br>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="card card-widget">
+                <div class="row">
+                       
+                       
+                    <div class="col-lg-12">
+                        <h3 class="text-center"><span style="color: #2d6d93;">Redes Sociales</span></h3>
+
+                        <div class="description-block">
+                            <i class="fas fa-thumbs-up fa-2x"></i>
+                            <h5 class="description-header">
+                                Siguenos en nuestra redes sociales
+                            </h5>
+                            <span class="description-text">
+                        {% for s in socialnetworks %}
+                            <a href="{{ s.url }}" target="_blank" class="btn bg-dark btn-xs btn-flat"><i
+                                    class="{{ s.icon }}"></i></a>
+                        {% endfor %}
+                        </span>
+                        </div>
+                    </div>  
+                </div>
+                <br>
+            </div>
+            <div class="card card-widget">
+                <div class="col-12">
+                    <h3 class="text-center"><span style="color: #2d6d93;">Publicaciones / Noticias</span></h3>
+                </div>
+                <div class="card-header">
+                    <div class="user-block">
+                        <img class="img-circle" src="{% static 'img/default/noticias.png' %}" alt="User Image">
+                        <span class="username"><a href="#">Zona de noticias</a></span>
+                        <span class="description">{{ date_joined }}</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="container-fluid">  
+                        <div class="row">
+                            {% for n in news %}
+                                <div class="col-lg-3 col-md-6">
+                                    <div class="card">
+                                        <img class="card-img-top" src="{{ n.get_image }}" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h5 class="card-title title-notice">{{ n.title }}</h5>
+                                            <p class="card-text">
+                                                {{ n.trim_desc }}...
+                                            </p>
+                                        </div>
+                                        <div class="card-footer">
+                                            <a href="{{ n.url }}" target="_blank" class="btn btn-primary btn-block">
+                                                <i class="fas fa-rss-square"></i> Leer más
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+{% endblock %}

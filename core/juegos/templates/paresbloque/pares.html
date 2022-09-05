@@ -1,0 +1,184 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        body{
+            width: 500px;
+            padding: 0px 10px;
+            margin: 10px auto;
+            text-align: center;
+            background-color: #ffeab9;
+        }
+        .flip-cartaTemporal-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          text-align: center;
+          transition: transform 0.6s;
+          transform-style: preserve-3d;
+          box-shadow: 0 4px 8px 0 #0c0d0dbd;
+        }
+        .flip-cartaTemporal-front, .flip-cartaTemporal-back {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+        }
+        .flip-cartaTemporal-front {
+          background-color: #ffffff;
+        }
+        .flip-cartaTemporal-back {
+          background-color: #ffffff;
+          transform: rotateY(180deg);
+        }
+        </style>
+    <title>Pares Bloque 2</title>
+</head>
+<body>
+    <h1 style="color: green;">PARES BLOQUE 2</h1>
+    <div id="pantalla" 
+         style="width: 500px; height: 420px;background-color: aquamarine;position: relative;box-shadow: 0 4px 8px 0 #0c0d0dbd;">
+        <div id="ganaste" 
+             style="position: absolute;left: 90px;top: 70px;font-weight: bold;color: green;display: none;">
+        <img src="{% static 'paresbloque/imagenes/9.png' %}"> 
+        </div>
+        <div style="position: absolute;left: 10px;top: 380px;">
+            <p style="font-size: 15px;font-weight: bold;position: relative;float: left;margin-top: -10px;">ENCONTRADOS: 
+                <span id="encontrados" style="color: green;font-weight: bold;">0</span>
+            </p>
+            <p style="font-size: 15px;font-weight: bold;position: relative;float: left;margin-left: 20px;margin-top: -10px;">FALTANTES: 
+                <span id="faltantes" style="color: green;font-weight: bold;">2</span>
+            </p>
+            <p style="font-size: 15px;font-weight: bold;position: relative;float: left;margin-left: 20px;margin-top: -10px;">TIEMPO: 
+                <span id="temporizador" style="color: green;font-weight: bold;">0</span>
+            </p>
+            <p style="font-size: 15px;font-weight: bold;position: relative;float: left;margin-left: 20px;margin-top: -10px;">INTENTOS: 
+                <span id="intentos" style="color: green;font-weight: bold;">0</span>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        var cartasArray = [1,2,3,1,2,3];
+        var contadorVolteadas = 0;
+        var carta1 = '';
+        var carta2 = '';
+        var encontradas = 0;
+        var faltantes = 3;
+        var tiempo = 0;
+        var temporizador ;
+        var intentos = 0;
+        var clic = false;
+        function carta(x,y,w,h,imagenFrente,imagenAtras){
+            this.x = x;
+            this.y = y;
+            this.w = w;
+            this.h = h;
+            this.imagenAtras = imagenAtras;
+            this.imagenFrente = imagenFrente;
+            this.template = `
+            <div onclick="voltear(this)" class="flip-cartaTemporal ctrlCartas" carta="`+this.imagenAtras+`" 
+                style="position: absolute;left: `+this.x+`px;top: `+this.y+`px; margin: 10px; width:`+this.w+`px; height:`+this.h+`px;">
+                <div class="flip-cartaTemporal-inner">
+                    <div class="flip-cartaTemporal-front">
+                        <img src="{% static 'paresbloque/`+this.imagenFrente+`' %}" alt="AvatarF" style="width:`+this.w+`px;height:`+this.h+`px;">
+                    </div>
+                    <div class="flip-cartaTemporal-back">
+                        <img src="{% static 'paresbloque/`+this.imagenAtras+`' %}" alt="AvatarB" style="width:`+this.w+`px;height:`+this.h+`px;">
+                    </div>
+                </div>
+            </div> 
+            `;
+        }
+        
+        window.onload = function() {
+            cargaCartas();
+            temporizador();
+        };
+
+        function desordenarArrays(arrayX){
+            let arrayReacomodado = arrayX.sort(function(){return Math.random() -0.5});
+            return arrayReacomodado;
+        }
+
+        function temporizador(){
+            temporizador = setInterval(() => {
+                tiempo++
+                document.getElementById('temporizador').innerHTML = tiempo;
+            }, 1000);
+        }
+
+        function cargaCartas(){
+            let cartasTemporal = desordenarArrays(cartasArray);
+            let modificador = 10;
+            for(let i=0;i<6;i++){
+                let lugar = document.getElementById("pantalla"); 
+                if(i == 3 || i == 6){ modificador = 10; }
+                if(i < 3){ y = 10; }
+                if(i < 5 && i >2){ y = 170; }
+                if(i < 3 && i >3){ y = 290; }
+                let cartaTemporal = new carta(modificador ,y ,140 ,140 ,'imagenes/back2.png','imagenes/'+cartasTemporal[i]+'.png');
+                lugar.insertAdjacentHTML("beforeend", cartaTemporal.template);
+                modificador = modificador + 160;
+            }
+        } 
+
+        function voltear(e){
+            e.setAttribute('onclick',"");
+            e.classList.add('volteada');
+            if(contadorVolteadas < 2){
+                let imagenX = e.getAttribute('carta');
+                if(contadorVolteadas == 0){
+                    carta1 = imagenX;
+                }
+                if(contadorVolteadas == 1){
+                    carta2 = imagenX;
+                }
+                e.firstElementChild.style.transform = ' rotateY(180deg) ';
+                contadorVolteadas++;
+                if(contadorVolteadas == 2){
+                    intentos++;
+                    document.getElementById('intentos').innerHTML = intentos ;
+                    let cartasArray = document.getElementsByClassName('flip-cartaTemporal-inner');
+                    setTimeout(() => {
+                        if(carta1 == carta2){
+                            let chequeo = document.getElementsByClassName('ctrlCartas');
+                            for (let cartaX of chequeo) {
+                                let imagenCarta = cartaX.getAttribute('carta');
+                                if(imagenCarta == carta1){
+                                    cartaX.setAttribute("style", "display: none;");
+                                    encontradas = encontradas + .5;
+                                    faltantes = faltantes - .5;
+                                    document.getElementById('encontrados').innerHTML = encontradas ;
+                                    document.getElementById('faltantes').innerHTML = faltantes ;
+                                    if(encontradas == 3){
+                                        clearInterval(temporizador);
+                                        document.getElementById('ganaste').style.display = 'block';
+                                    }
+                                }
+                            }
+                        }else{
+                            let volteadas = document.getElementsByClassName('volteada');
+                            let cantidadVolteadas = volteadas.length - 1;
+                            for (let index = cantidadVolteadas; index >= 0; index--) {
+                                volteadas[index].setAttribute("onclick","voltear(this);")
+                                volteadas[index].classList.remove("volteada");
+                            }
+                        }
+                        for(let cartaX of cartasArray){
+                            cartaX.style.transform = '' ;
+                            contadorVolteadas = 0;
+                        }
+                    }, 1000);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

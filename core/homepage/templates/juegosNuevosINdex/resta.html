@@ -1,0 +1,214 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu desplegable</title>
+   
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+  
+    <link rel="stylesheet" href="{% static 'juegosNuevosINdex/css/estilos.css' %}" />
+    <link rel="stylesheet" href="{% static 'juegosNuevosINdex/css/bootstrap.css' %}" />
+
+</head>
+<body>
+    <nav class="menu">
+        <section class="menu__container">
+            <img src="{% static 'juegosNuevosINdex/img/logo.png' %}" alt="" width="5%" height="100%">
+
+            <ul class="menu__links">
+                <li class="menu__item">
+                    <a href="{% url 'index' %}" class="menu__link">Inicio</a>
+                </li>
+    
+                <li class="menu__item menu__item--show">
+                    <a href="#" class="menu__link">Unidad 1 <img src="{% static 'juegosNuevosINdex/assets/arrow.svg' %}" class="menu__arrow"></a>
+    
+                    <ul class="menu__nesting">
+                        <li class="menu__inside">
+                            <a href="{% url 'numerosIndex' %}" class="menu__link menu__link--inside">Números</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'figurasIndex' %}" class="menu__link menu__link--inside">Figuras</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'sumaIndex' %}" class="menu__link menu__link--inside">Suma</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'restaIndex' %}" class="menu__link menu__link--inside">Resta</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'kilogramoIndex' %}" class="menu__link menu__link--inside">Kilogramo y gramo</a>
+                        </li>
+                    </ul>
+                </li>
+    
+                <li class="menu__item  menu__item--show">
+                    <a href="#" class="menu__link">Unidad 2  <img src="{% static 'juegosNuevosINdex/assets/arrow.svg' %}" class="menu__arrow"></a>
+    
+                    <ul class="menu__nesting">
+                        <li class="menu__inside">
+                            <a href="{% url 'decenasIndex' %}" class="menu__link menu__link--inside">Decenas y Unidades</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'indexJuego' %}" class="menu__link menu__link--inside">Conjuntos</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'sucesionesIndex' %}" class="menu__link menu__link--inside">Sucesiones</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'litroIndex' %}" class="menu__link menu__link--inside">Litro</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'conjuntosIndex' %}" class="menu__link menu__link--inside">Conteo númerico y unidad monetaria</a>
+                        </li>
+                    </ul>
+                </li>
+    
+           
+            </ul>
+
+            <div class="menu__hamburguer">
+                <img src="{% static 'juegosNuevosINdex/img/hamburguesa.svg' %}" class="menu__img">
+            </div>
+        </section>
+
+      
+    </nav>
+    <header class="header" id="inicio">
+        <div class="contenedor head">
+            <h1 class="titulo"><strong>Matamáticas:</strong> Resta
+            </h1>
+        <br>
+        <br>
+        <br>
+        </div>
+    </header>
+    <main>
+        <section class="services contenedor" id="servicio">
+            <h2 class="subtitulo">Concepto:</h2>
+            <p align="justify">La resta o sustracción es una de las cuatro operaciones básicas de la aritmética que consiste en la sustracción de dos o más elementos para llegar a un resultado final donde el resultado final es el elemento original disminuido por el elemento que se quiso restar.</p>
+            <div class="contenedor-servicio">
+                <img src="{% static 'juegosNuevosINdex/img/resta1.png' %}" alt="">
+                <div class="checklist-servicio">
+                    <div class="service">
+                        <h3 class="n-service"><span class="number">1</span>Minuendo:</h3>
+                        <p style="font-size: 13px;" align="justify">Es el elemento total que queremos sustraer.</p>
+                        
+                    </div>
+                    <div class="service">
+                        <h3 class="n-service"><span class="number">2</span>Sustraendo:</h3>
+                        <p style="font-size: 13px;"align="justify">Es el sustraendo que es la cantidad que queremos restar.</p>
+                        
+                    </div>
+                    <div class="service">
+                        <h3 class="n-service"><span class="number">3</span>Diferencia:
+
+                        </h3>
+                        <p style="font-size: 13px;"align="justify">Es el resultado final de la resta.</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="services contenedor" id="servicio">
+            <h2 class="subtitulo">Pasos para resolver una resta:</h2>
+            
+            <div class="contenedor-servicio1">
+                <div class="posts">
+                    <article class="prueba3">
+                        <br>
+                        <h3 class="prueba1">Resta Simple</h3>
+                        <p align="justify"><strong>1) </strong>“Coloca el sustraendo (lo que va a restar) debajo del minuendo (la cantidad de la que partimos) , de forma que coincidan las unidades en la misma columna.” </p>
+												<p align="justify"><strong>2) </strong>Extrae del material las unidades que indica el sustraendo, represéntalo en la resta.</p>
+												<palign="justify"><strong>3) </strong>Extrae del material las decenas, representándolo también en la operación.</p>
+                                                <img align="center"  src="{% static 'juegosNuevosINdex/img/resta3.png' %}" width="40%" height="40%"alt="#" style="margin-left: 30%;" >
+                                                <hr>
+                    </article>
+                    <article class="prueba3">
+                        <h3 class="prueba1">Resta sin llevadas</h3>
+                        <p align="center">“Aquí puedes ver un ejemplo de resta sin llevar con números de dos cifras.”</p>
+                        <img align="center"  src="{% static 'juegosNuevosINdex/img/resta3.png' %}" width="40%" height="40%"alt="#" style="margin-left: 30%;" >
+                        <hr>
+                    </article>
+                    <article class="prueba3">
+                        <h3 class="prueba1">Resta sin llevadas de tres cifras</h3>
+                        <p align="center">“Aquí puedes ver un ejemplo de resta sin llevar con números de tres cifras.”</p>
+                        <img align="center"  src="{% static 'juegosNuevosINdex/img/resta4.png' %}" width="40%" height="40%"alt="#" style="margin-left: 30%;" >
+                        <hr>
+                    </article>
+                    
+                    <article class="prueba3">
+                        <h3 class="prueba1">Resta con llevadas de dos cifras</h3>
+                        <p align="center">“Para realizar la resta vemos que la cifra de las unidades sea mayor en el sustraendo que en el minuendo. Los bloques de decenas  se pueden desagrupar en 10 unidades sueltas. Ahora tenemos 4 decenas y 12 unidades.”</p>
+                        <img align="center"  src="{% static 'juegosNuevosINdex/img/resta5.png' %}" width="40%" height="40%"alt="#" style="margin-left: 30%;" >
+                        <hr>
+                    </article>
+                    <article class="prueba3">
+                        <h3 class="prueba1">Resta con llevadas de dos cifras</h3>
+                        <p align="center">“En las decenas ya no tendriamos 4 si no 5. En cuanto a las unidades ya no tendriamos 2 unidades por que se añadio 10 unidades por lo tanto tenemos 12 unidades.”</p>
+                        <img align="center"  src="{% static 'juegosNuevosINdex/img/resta6.png' %}" width="40%" height="40%"alt="#" style="margin-left: 30%;" >
+                        <hr>
+                    </article>
+                    <article class="prueba3">
+                        <h3 class="prueba1">Resta con llevadas de dos cifras</h3>
+                        <p align="center">“Realizamos la resta de forma normal ya que ahora tenemos las unidades necesarias 12-7 seria 5. en las decenas realizamos de la misma manera quitamos uno y nos queda 3.”</p>
+                        <img align="center"  src="{% static 'juegosNuevosINdex/img/resta7.png' %}" width="40%" height="40%"alt="#" style="margin-left: 30%;" >
+                        <hr>                        
+                    
+                    </article>
+                </div>
+            </div>
+        </section>
+       
+        <section>
+            <br>
+            <h2 class="subtitulo">Juega y Aprende</h2>
+
+            <div style="margin-left:10%; margin-right: 10%; margin-top: 5%;">
+                <iframe style="max-width:100%" src="https://wordwall.net/es/embed/f7c0b530df4b4416b432b55111963837?themeId=22&templateId=71&fontStackId=0" width=100% height="380" frameborder="0" allowfullscreen></iframe>	
+            </div>
+        <section class="juega aprende">
+            <div class="contenedor">
+                <h2 class="subtitulo">Material De Refuerzo</h2>
+                <div class="elija-juego">
+                    <div class="imagen-juegos">
+                        <img src="{% static 'JuegosNuevosINdex/img/video.png' %}" alt="">
+                        <div class="hover-icono">
+                            <a href="https://www.youtube.com/embed/qbODIJqzLVA" style="text-decoration: none; " target="_blank"> <p>Ver</p></a>
+                           
+                        </div>
+                    </div>
+                    <div class="imagen-juegos">
+                        <img src="{% static 'JuegosNuevosINdex/img/pdf.png' %}" alt="">
+                        <div class="hover-icono">
+                            <li style="list-style-type:none ;"><a target="_blank" href="{% static 'JuegosNuevosINdex/img/resta1.pdf' %}" style="text-decoration: none; color: aliceblue;" >Descargar</a></li>
+
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </section>
+     
+
+    </main>
+    <footer class="contacto" id="contacto"style="height:40% ;">
+        <div class="footer-content">
+            <div class="contact-us">
+                <h2 class="brand">Unidad Educativa Intercultural Bilingüe Huayna Capac </h2>
+                <P>Comprometidos con la formación profesional desde 1982.
+                </P>
+            </div>
+            
+        </div>
+        <div class="line"></div>
+    </footer>
+   <script src="{% static 'juegosNuevosINdex/js/app.js' %}"></script>
+   <script src="{% static 'juegosNuevosINdex/js/lightbox.js' %}"></script>
+   <script src="{% static 'juegosNuevosINdex/js/jquery.js' %}"></script>
+</body>
+</html>

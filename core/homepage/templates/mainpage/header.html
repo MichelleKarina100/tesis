@@ -1,0 +1,17 @@
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+        <a href="{% url 'index' %}" class="logo mr-auto"><img src="{{ mainpage.get_icon_image }}" alt=""
+                                                              class="img-fluid" width="140px"></a>
+        <nav class="nav-menu d-none d-lg-block">
+            <ul>
+                <li>
+                    <a href="{% url 'index' %}" class="text-center">
+                        <span style="color: #2d6d93; font-size:20px">{{ mainpage.name | upper }}</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<!-- End Header -->

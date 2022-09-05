@@ -1,0 +1,116 @@
+{% extends 'list.html' %} 
+{% load static %}
+{% block head_list %}
+    <link rel="stylesheet" href="{% static 'lib/formvalidation-1.8.0/css/formValidation.min.css' %}">
+    <script src="{% static 'lib/formvalidation-1.8.0/js/es6-shim.min.js' %}"></script>
+    <script src="{% static 'lib/formvalidation-1.8.0/js/FormValidation.min.js' %}"></script>
+    <script src="{% static 'lib/formvalidation-1.8.0/js/plugins/Bootstrap.min.js' %}"></script>
+    <script src="{% static 'lib/formvalidation-1.8.0/js/locales/es_ES.min.js' %}"></script>
+    <script src="{% static 'cursos/js/upload_excel_cursos.js' %}"></script>
+{% endblock %}
+
+
+{% block columns %}
+<th>Nro</th>
+<th>Profesor</th>
+<th>Nivel</th>
+<th>Sección</th>
+<th>Asignatura</th>
+<th class="text-center">Opciones</th>
+{% endblock %} 
+{% block rows %} 
+{% for i in object_list %}
+<tr>
+  <td>{{ i.id }}</td>
+  <td>{{ i.profesor.last_name }} {{ i.profesor.first_name }}</td>
+  <td>{{ i.nivel }}</td>
+  <td>{{ i.seccion }}</td>
+  <td>{{ i.asignatura }}</td>
+  <td>
+    <div class="dropdown text-center">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        id="dropdownMenu2"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        Opciones
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        {% if request.session.group.name != 'Estudiante'%}
+          <a
+            href="{% url 'cursos_update' i.id %}"
+            data-toggle="tooltip"
+            title="Editar registro"
+            class="dropdown-item"
+          >
+            <i class="fas fa-edit"> Editar</i>
+          </a>
+          <a
+            href="{% url 'cursos_delete' i.id %}"
+            data-toggle="tooltip"
+            title="Eliminar registro"
+            class="dropdown-item"
+          >
+          <i class="fas fa-trash-alt">Eliminar</i>
+          </a>
+        {% endif %}
+
+        <a
+          href="{% url 'verCurso' i.id %}"
+          data-toggle="tooltip"
+          title="Matriculas"
+          class="dropdown-item"
+        >
+          <i class="fa fa-address-book"> Ver Curso</i>
+        </a>
+      </div>
+    </div>
+  </td>
+</tr>
+
+<hr>
+{% endfor %} {% endblock %}
+<!-- COPIAR -->
+
+{% block box_footer_add_button %}
+    <a class="btn btn-info btn-flat btnUpload">
+        <i class="fas fa-upload"></i> Subir Excel de Cursos
+    </a>
+{% endblock %}
+
+{% block javascript_list %}
+    <div class="modal fade" id="myModalUploadExcel" tabindex="-1" role="dialog" aria-hidden="true">
+        <form method="post" id="frmUploadExcel" action=".">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            <b><i class="fas fa-upload"></i> Subir Cursos</b>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="form-group">
+                                <label>Archivo de excel:</label>
+                                <input type="file" class="form-control"
+                                       accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                                       name="archive" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">
+                            <i class="fas fa-upload"></i> Subir excel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

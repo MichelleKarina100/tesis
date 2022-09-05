@@ -1,0 +1,27 @@
+#contenedor {
+    background-color:blue;
+    padding: 20px;
+}
+
+#datos {
+    background-color:rgb(255, 238, 0);
+    text-align: center;
+    padding: 10px;
+}
+
+.form-group{
+    padding: 50px;
+    font-size: 25px;
+    margin: 10px;
+}
+
+#canvas{
+    background-color: chartreuse;
+}
+
+#puntaje {
+    background-color: rgb(255, 0, 234);
+    height: 100px;
+    font-size: 80px;
+    text-align: center;
+}

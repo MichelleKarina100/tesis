@@ -1,0 +1,233 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unidad Monetaria</title>
+   
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+  
+    <link rel="stylesheet" href="{% static 'juegosNuevosINdex/css/estilos.css' %}" />
+    <link rel="stylesheet" href="{% static 'juegosNuevosINdex/css/bootstrap.css' %}" />
+
+</head>
+<body>
+    <nav class="menu">
+        <section class="menu__container">
+            <img src="{% static 'juegosNuevosINdex/img/logo.png' %}" alt="" width="5%" height="100%">
+
+            <ul class="menu__links">
+                <li class="menu__item">
+                    <a href="{% url 'index' %}" class="menu__link">Inicio</a>
+                </li>
+    
+                <li class="menu__item menu__item--show">
+                    <a href="#" class="menu__link">Unidad 1 <img src="{% static 'juegosNuevosINdex/assets/arrow.svg' %}" class="menu__arrow"></a>
+    
+                    <ul class="menu__nesting">
+                        <li class="menu__inside">
+                            <a href="{% url 'numerosIndex' %}" class="menu__link menu__link--inside">Números</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'figurasIndex' %}" class="menu__link menu__link--inside">Figuras</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'sumaIndex' %}" class="menu__link menu__link--inside">Suma</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'restaIndex' %}" class="menu__link menu__link--inside">Resta</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'kilogramoIndex' %}" class="menu__link menu__link--inside">Kilogramo y gramo</a>
+                        </li>
+                    </ul>
+                </li>
+    
+                <li class="menu__item  menu__item--show">
+                    <a href="#" class="menu__link">Unidad 2  <img src="{% static 'juegosNuevosINdex/assets/arrow.svg' %}" class="menu__arrow"></a>
+    
+                    <ul class="menu__nesting">
+                        <li class="menu__inside">
+                            <a href="{% url 'decenasIndex' %}" class="menu__link menu__link--inside">Decenas y Unidades</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'indexJuego' %}" class="menu__link menu__link--inside">Conjuntos</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'sucesionesIndex' %}" class="menu__link menu__link--inside">Sucesiones</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'litroIndex' %}" class="menu__link menu__link--inside">Litro</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'conjuntosIndex' %}" class="menu__link menu__link--inside">Conteo númerico y unidad monetaria</a>
+                        </li>
+                    </ul>
+                </li>
+    
+           
+            </ul>
+
+            <div class="menu__hamburguer">
+                <img src="{% static 'juegosNuevosINdex/img/hamburguesa.svg' %}" class="menu__img">
+            </div>
+        </section>      
+    </nav>
+    <header class="header" id="inicio">
+        <div class="contenedor head">
+            <h1 class="titulo"><strong>Matemáticas</strong> Conteo númerico y Unidad monetaria
+            </h1>
+        <br>
+        <br>
+        <br>
+        </div>
+    </header>
+    <main>
+        <section class="services contenedor" id="servicio">
+            <h2 class="subtitulo">Concepto Conteo Númerico:</h2>
+            <p align="center">Es un proceso de medición finita en el que se asigna un número cardinal para representar a un conjunto. </p>
+            <div class="contenedor-servicio">
+                <img src="{% static 'juegosNuevosINdex/img/nueva.png' %}" alt="">
+                <div class="checklist-servicio">
+                    <div class="service">
+                        <h3 class="n-service"><strong>Principios:</strong> </h3>
+                        <h3 class="n-service"><span class="number">·</span> Correspondencia uno a uno.</h3>
+                        <h3 class="n-service"><span class="number">·</span> Orden estable.</h3>
+                        <h3 class="n-service"><span class="number">·</span> Cardinalidad.</h3>
+                        <h3 class="n-service"><span class="number">·</span> Abstracción.</h3>
+                        <h3 class="n-service"><span class="number">·</span> Orden irrelevante.</h3>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="services contenedor" id="servicio">
+            <h2 class="subtitulo">Cuenta con nosotros lo siguiente:</h2>
+            
+            <div class="contenedor-servicio1">
+                <div class="posts">
+                    <article class="prueba3">
+                        <br>
+                        <br>
+                        <h3 class="prueba1">Cuenta del 1 al 10</h3>
+                        <img align="center"  src="{% static 'juegosNuevosINdex/img/nu1.png' %}" width="20%" height="20%"alt="#" style="margin-left: 40%;" >
+                        <hr>
+                    </article>
+                    <article class="prueba3">
+                        <h3 class="prueba1">Cuenta cuántas pelotas tenemos:</h3>
+                        <img  src="{% static 'JuegosNuevosINdex/img/pelota.png' %}" width="20%" height="20%"alt="#" style="margin-left: 40%;" >
+                        <hr>
+                    </article>
+                    <article class="prueba">
+                      
+                    </article>
+                    
+                    <article class="prueba3">
+                        <h3 class="prueba1">Cuenta cuántas piñas tenemos:</h3>
+                        <img  src="{% static 'JuegosNuevosINdex/img/piniaa.png' %}" width="20%" height="20%"alt="#" style="margin-left: 40%;" >
+                        <hr>
+                    </article>
+                    
+             
+                    
+                </div>
+            </div>
+        </section>
+
+        <section class="services contenedor" id="servicio">
+            <h2 class="subtitulo">Concepto: Unidad Monetaria</h2>
+            <p align="justify">La moneda o unidad monetaria es una unidad de cambio que facilita la transferencia de bienes y servicios. Se muestra en forma de piezas metálicas, llamadas monedas normalmente redondas o en forma de piezas de papel, llamados billetes o papel moneda.</p>
+            <div class="contenedor-servicio">
+                <img src="{% static 'juegosNuevosINdex/img/monedas.png' %}" alt="">
+                <div class="checklist-servicio">
+                    <div class="service">
+                        <h3 class="n-service"><span class="number">1</span>Sabías que..</h3>
+                        <p style="font-size: 13px;" align="justify">Le llamamos unidad monetaria a la moneda que se utiliza en cada país para obtener servicios y bienes.</p>
+                        <p style="font-size: 13px;" align="justify">El dinero de papel se le llama billete y está hecho de papel especial.</p>
+                        <p style="font-size: 13px;" align="justify">Hacer un billete es muy complicado, así se evita que sea falsificado.</p>
+
+                    </div>
+                    <div class="service">
+                        <h3 class="n-service"><span class="number">2</span>Su símbolo es: --> $</h3>
+                        <p style="font-size: 13px;"align="justify">     </p>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        
+        </section>
+        <section class="gallery" id="portafolio">
+            <div class="contenedor">
+                <h2 class="subtitulo"><strong>Billetes de 1, 5, 20 dólares</strong></h2>
+                <div class="contenedor-galeria">
+
+                   
+                    <img src="{% static 'JuegosNuevosINdex/img/dolarsss.png' %}" alt="" class="img-galeria">
+                    <img src="{% static 'JuegosNuevosINdex/img/cincodolarss.png' %}" alt="" class="img-galeria">
+                    <img src="{% static 'JuegosNuevosINdex/img/veintedolarss.png' %}" alt="" class="img-galeria">
+                </div>
+            </div>
+        </section>
+        <section class="imagen-ligth">
+            <img src="{% static 'JuegosNuevosINdex/img/close.svg' %}" alt="" class="close">
+            <img src="{% static 'JuegosNuevosINdex/img/portada.png' %}" alt="" class="agregar-imagen">
+            
+                
+            </div>
+            
+        </section>
+        <section>
+            <br>
+            <h2 class="subtitulo">Juega y Aprende</h2>
+
+            <div style="margin-left:10%; margin-right: 10%; margin-top: 5%;">
+                <iframe style="max-width:100%" src="https://wordwall.net/es/embed/e3c74ce479094cada98205c7b933856f?themeId=21&templateId=30&fontStackId=0" width="100%" height="380" frameborder="0" allowfullscreen></iframe>            </div>
+        </section>
+        <section class="juega aprende">
+            <div class="contenedor">
+                <h2 class="subtitulo">Material De Refuerzo</h2>
+                <div class="elija-juego">
+                    <div class="imagen-juegos">
+                        <img src="{% static 'JuegosNuevosINdex/img/video.png' %}" alt="">
+                        <div class="hover-icono">
+                            <a href="https://youtu.be/K-booTiK-9g" style="text-decoration: none; " target="_blank"> <p>Ver</p></a>
+                           
+                        </div>
+                    </div>
+                    <div class="imagen-juegos">
+                        <img src="{% static 'JuegosNuevosINdex/img/pdf.png' %}" alt="">
+                        <div class="hover-icono">
+                            <li style="list-style-type:none ;"><a target="_blank" href="{% static 'JuegosNuevosINdex/img/conteo.pdf' %}" style="text-decoration: none; color: aliceblue;" >Descargar</a></li>
+
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </section>
+     
+
+    </main>
+    <footer class="contacto" id="contacto">
+        <div class="footer-content">
+            <div class="contact-us">
+                <h2 class="brand">Unidad Educativa Intercultural Bilingüe Huayna Capac </h2>
+                <p>Comprometidos con la formación profesional desde 1982.
+                </p>
+                
+            </div>
+            <div class="line"></div>
+        </div>
+    </footer>
+   <script src="{% static 'juegosNuevosINdex/js/app.js' %}"></script>
+   <script src="{% static 'juegosNuevosINdex/js/lightbox.js' %}"></script>
+   <script src="{% static 'juegosNuevosINdex/js/jquery.js' %}"></script>
+</body>
+</html>

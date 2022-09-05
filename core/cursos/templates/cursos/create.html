@@ -1,0 +1,49 @@
+{% extends 'form.html' %}
+{% load static %}
+{% block head_form %}
+
+<script src="{% static 'mainpage/vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'mainpage/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'mainpage/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'lib/formvalidation-1.8.0/css/formValidation.min.css' %}">
+<script src="{% static 'lib/formvalidation-1.8.0/js/es6-shim.min.js' %}"></script>
+<script src="{% static 'lib/formvalidation-1.8.0/js/FormValidation.min.js' %}"></script>
+<script src="{% static 'lib/formvalidation-1.8.0/js/plugins/Bootstrap.min.js' %}"></script>
+<script src="{% static 'lib/formvalidation-1.8.0/js/locales/es_ES.min.js' %}"></script>
+<script src="{% static 'lib/jquery-confirm-3.3.4/jquery-confirm.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'lib/jquery-confirm-3.3.4/jquery-confirm.min.css' %}"/>
+<script src="{% static 'lib/sweetalert2-11.0.16/sweetalert2.all.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'lib/sweetalert2-11.0.16/sweetalert2.min.css' %}"/>
+<script src="{% static 'lib/select2-4.0.13/js/select2.min.js' %}"></script>
+<script src="{% static 'lib/select2-4.0.13/js/i18n/es.js' %}"></script>
+<link rel="stylesheet" href="{% static 'lib/select2-4.0.13/css/select2.min.css' %}">
+<link rel="stylesheet" href="{% static 'lib/select2-4.0.13/css/select2-bootstrap4.min.css' %}">
+<script src="{% static 'lib/bootstrap-daterangepicker-3.1/js/moment.js' %}"></script>
+<script src="{% static 'lib/bootstrap-daterangepicker-3.1/js/moment-with-locales.js' %}"></script>
+
+<script src="{% static 'lib/bootstrap-daterangepicker-3.1/js/moment.js' %}"></script>
+<script src="{% static 'lib/bootstrap-daterangepicker-3.1/js/moment-with-locales.js' %}"></script>
+
+<script src="{% static 'lib/tempusdominus-bootstrap-4.5.37.0/js/tempusdominus-bootstrap.js' %}"></script>
+<link rel="stylesheet" href="{% static 'lib/tempusdominus-bootstrap-4.5.37.0/css/tempusdominus-bootstrap.css' %}"/>
+
+<script src="{% static 'cursos/js/form.js' %}"></script>
+
+
+    <script >    
+        date_current = new moment().format("YYYY-MM-DD");
+
+        $(function() {
+            $('#creada_en').datetimepicker({
+                format: 'YYYY-MM-DD',
+                minDate: date_current,
+            });
+            $('#finaliza_en').datetimepicker({
+                format: 'YYYY-MM-DD',
+                minDate: $("#creada_en").val(),
+            });
+        });
+
+        
+    </script>
+{% endblock %}

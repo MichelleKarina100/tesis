@@ -1,0 +1,162 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Estudiantes</title>
+    <style>
+
+      * {
+          color: black;
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+
+      }
+
+      body {
+          font-family: 'Open Sans', sans-serif;
+                      padding: 0;
+          margin: 0;
+          color: black;
+      }
+
+      .name-company {
+          font-size: 30px;
+          padding: 0;
+          margin: 0;
+          font-weight: bold;
+          text-transform: uppercase;
+          text-align: center;
+      }
+
+      table thead tr th {
+          border: 1px solid black !important;
+          padding: 3px;
+      }
+
+      table tbody tr td {
+          border: 1px solid black;
+          padding: 3px;
+      }
+
+     
+      .logo{
+          width: 90px;
+          height: 120px;
+          float: right;
+          margin-bottom:  15px; ;
+          
+      }
+      .final{
+        display: inline-flexbox;
+        width: 100%;
+        height: 50px;
+        bottom: 0;
+        position: fixed;
+        text-align: right;
+        padding-top: 100px;
+
+      
+      }
+
+  </style>
+</head>
+<body>
+<div class="container-fluid">
+     <div>
+      <img  style="text-align: right;"class="logo" src="{% static 'matricula/img/logo.jpeg' %}" alt="no imagen">
+      <br>
+      <h2 style="text-align:center; color:#249ad1">Unidad Educativa Intercultural Bilingue Huayna Capac</h2>
+      <br>
+      <h4 class="text-center"><strong>Reporte de Calificaciones</strong></h4>
+
+     </div>
+<table style="width: 100%;">
+  <tr>
+    <th>             <h6 class=""><strong>Curso: </strong>{{ curso.nivel | upper}}</h6>
+    </th>
+    <th>             <h6><strong>Modalidad:</strong>  {{ curso.seccion | upper}}</h6>
+    </th>
+    <th>             <h6><strong>Materia:</strong>  {{ curso.asignatura | upper}}</h6>
+    </th>
+  </tr>
+</table>
+    <p >
+        <br>
+        <strong>Profesor: </strong>  {{ curso.profesor.first_name }} {{ curso.profesor.last_name }} <br>
+        <br>
+        <strong>No. de Estudiantes: 25 </strong> <!-- {{ listaN }}-->
+    </p>
+    <br>
+    <table class="table table-bordered table-striped" id="data" width="100%">
+        <thead class="thead-info">
+          <tr style="text-align: center;">
+            <th scope="col">#</th>
+            <th scope="col">Tema</th>
+            <th scope="col">Estudiante</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Nota</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {% for l in tareas %}
+          <tr style="text-align: center;">
+            
+            <th scope="row"> {{ forloop.counter }} </th>
+            <td> {{ l.tarea.name | upper}} </td>
+            <td> {{ l.estudiante.user.first_name | upper}} {{ l.estudiante.user.last_name | upper}}</td>
+            <td> {{ l.creada_en | date:"M/d"|lower }} </td>
+            <td> {{ l.nota }} </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    <p>Notas Totales.</p>
+    <br>
+    <table class="table table-bordered table-striped" id="data" width="100%">
+        <thead>
+          <tr style="text-align: center;" >
+            <th scope="col">Quimestre</th>
+            <th scope="col">Producto 1</th>
+            <th scope="col">Producto 2</th>
+            <th scope="col">Evaluación</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="text-align: center;">
+            <th class="text-center" scope="row"> 1 </th>
+            <td class="text-center">{{ notaP1 }}</td>
+            <td class="text-center"> {{ notaP2 }} </td>
+            <td class="text-center"> {{ notaEva }} </td>
+            <td class="text-center">  {{ acumulador }}  </td>
+          </tr>
+          <tr style="text-align: center;">
+            <th class="text-center" scope="row"> 2 </th>
+            <td class="text-center">{{ notaP1Q2 }}</td>
+            <td class="text-center"> {{ notaP2Q2 }} </td>
+            <td class="text-center"> {{ notaEvaQ2 }} </td>
+            <td class="text-center">  {{ acumuladorQ2 }}  </td>
+          </tr>
+          <tr style="text-align: center;">
+            <th class="text-center" scope="row"> Promedio Final </th>
+            <td class="text-center"></td>
+            <td class="text-center">  </td>
+            <td class="text-center">  </td>
+            <td class="text-center">  {{ promedioFinal }}  </td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+<div class="final">
+  <hr>
+  <h6 >@ Desarrollado por Unidad Educativa Huayna Capac</h6>
+  <h6 >{{fecha_dt1}}</h6>
+  </div>
+
+</body>
+</html>

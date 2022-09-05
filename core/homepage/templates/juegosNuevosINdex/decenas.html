@@ -1,0 +1,212 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu desplegable</title>
+   
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+  
+    <link rel="stylesheet" href="{% static 'juegosNuevosINdex/css/estilos.css' %}" />
+    <link rel="stylesheet" href="{% static 'juegosNuevosINdex/css/bootstrap.css' %}" />
+
+</head>
+<body>
+    <nav class="menu">
+        <section class="menu__container">
+            <img src="{% static 'juegosNuevosINdex/img/logo.png' %}" alt="" width="5%" height="100%">
+
+            <ul class="menu__links">
+                <li class="menu__item">
+                    <a href="{% url 'index' %}" class="menu__link">Inicio</a>
+                </li>
+    
+                <li class="menu__item menu__item--show">
+                    <a href="#" class="menu__link">Unidad 1 <img src="{% static 'juegosNuevosINdex/assets/arrow.svg' %}" class="menu__arrow"></a>
+    
+                    <ul class="menu__nesting">
+                        <li class="menu__inside">
+                            <a href="{% url 'numerosIndex' %}" class="menu__link menu__link--inside">Números</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'figurasIndex' %}" class="menu__link menu__link--inside">Figuras</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'sumaIndex' %}" class="menu__link menu__link--inside">Suma</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'restaIndex' %}" class="menu__link menu__link--inside">Resta</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'kilogramoIndex' %}" class="menu__link menu__link--inside">Kilogramo y gramo</a>
+                        </li>
+                    </ul>
+                </li>
+    
+                <li class="menu__item  menu__item--show">
+                    <a href="#" class="menu__link">Unidad 2  <img src="{% static 'juegosNuevosINdex/assets/arrow.svg' %}" class="menu__arrow"></a>
+    
+                    <ul class="menu__nesting">
+                        <li class="menu__inside">
+                            <a href="{% url 'decenasIndex' %}" class="menu__link menu__link--inside">Decenas y Unidades</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'indexJuego' %}" class="menu__link menu__link--inside">Conjuntos</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'sucesionesIndex' %}" class="menu__link menu__link--inside">Sucesiones</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'litroIndex' %}" class="menu__link menu__link--inside">Litro</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'conjuntosIndex' %}" class="menu__link menu__link--inside">Conteo númerico y unidad monetaria</a>
+                        </li>
+                    </ul>
+                </li>
+    
+           
+            </ul>
+
+            <div class="menu__hamburguer">
+                <img src="{% static 'juegosNuevosINdex/img/hamburguesa.svg' %}" class="menu__img">
+            </div>
+        </section>
+
+      
+    </nav>
+    <header class="header" id="inicio">
+        <div class="contenedor head">
+            <h1 class="titulo"><strong>Matamáticas</strong> Decenas y Unidades
+            </h1>
+        <br>
+        <br>
+        <br>
+        </div>
+    </header>
+    <main>
+        <section class="services contenedor" id="servicio">
+            <h2 class="subtitulo">Concepto:</h2>
+                <div class="contenedor-servicio">
+                <img src="{% static 'juegosNuevosINdex/img/decena.png' %}" alt="">
+                <br>    
+                <div class="checklist-servicio">
+                    <div class="service">
+                        <h3 class="n-service"><span class="number">1</span>Las unidades:</h3>
+                        <p style="font-size: 13px;" align="justify">La unidad es el elemento entero más pequeño que se utiliza para contar y para representar cifras. Por ejemplo:
+
+                            1 manzana,
+                            5 lápices,
+                            8 caramelos.
+                            Las unidades siempre se sitúan a la derecha.</p>
+                        
+                    </div>
+                    <div class="service">
+                        <h3 class="n-service"><span class="number">2</span>Las decenas:</h3>
+                        <p style="font-size: 13px;"align="justify">Las decenas agrupan las unidades de 10 en 10. Las decenas ocupan la segunda cifra desde la derecha.</p>
+
+                        <p style="font-size: 13px;"align="justify">10 unidades son una decena.</p>
+                            
+                        <p style="font-size: 13px;"align="justify">20 manzanas serian: 20 unidades de manzanas o, 2 decenas de manzanas.</p>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        
+        <section class="services contenedor" id="servicio">
+            <h2 class="subtitulo">Unidades y Decenas:</h2>
+            
+            <div class="contenedor-servicio1">
+                <div class="posts">
+                    <br><br>
+                    <article class="prueba3">
+                        <h3 class="prueba1">Tenemos 3 plátanos: Se lee <strong>" 3 Unidades"</strong></h3>
+                        <img  src="{% static 'JuegosNuevosINdex/img/unidades1.png' %}" width="60%" height="60%"alt="#" style="margin-left: 20%;" >
+                        <hr>
+                    </article>
+                    <article class="prueba">
+                      
+                    </article>
+                    
+                    <article class="prueba3">
+                        <h3 class="prueba1">Tenemos 8 estrellas: Se lee <strong>"8 Unidades"</strong></h3>
+                        <img  src="{% static 'JuegosNuevosINdex/img/ff.png' %}" width="60%" height="60%"alt="#" style="margin-left: 20%;" >
+                        <hr>
+                    </article>
+                    <article class="prueba3">
+                        <h3 class="prueba1">Tenemos 10 manzanas: Se lee  <strong>"1 Decena"</strong></h3>
+                        <img  src="{% static 'JuegosNuevosINdex/img/ww.png' %}" width="60%" height="60%"alt="#" style="margin-left: 20%;" >
+                        <hr>
+                    </article>
+                    <article class="prueba3">
+                        <h3 class="prueba1">Tenemos 12 fresas: Se lee <strong>"1 Decena con 2 Unidades"</strong></h3>
+                        <img  src="{% static 'JuegosNuevosINdex/img/tt.png' %}" width="60%" height="60%"alt="#" style="margin-left: 20%;" >
+                        <hr>
+                    </article>
+             
+                    
+                </div>
+            </div>
+        </section>
+        <section class="imagen-ligth">
+            <img src="{% static 'JuegosNuevosINdex/img/close.svg' %}" alt="" class="close">
+            <img src="{% static 'JuegosNuevosINdex/img/portada.png' %}" alt="" class="agregar-imagen">
+            
+                
+            </div>
+            
+        </section>
+        <section>
+            <br>
+            <h2 class="subtitulo">Juega y Aprende</h2>
+
+            <div style="margin-left:10%; margin-right: 10%; margin-top: 5%;">
+                <iframe style="max-width:100%" src="https://wordwall.net/es/embed/8346bf671f8742c193da2fbfd532ad52?themeId=21&templateId=30&fontStackId=0" width=100%  height="380" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </section>
+        <section class="juega aprende">
+            <div class="contenedor">
+                <h2 class="subtitulo">Material De Refuerzo</h2>
+                <div class="elija-juego">
+                    <div class="imagen-juegos">
+                        <img src="{% static 'JuegosNuevosINdex/img/video.png' %}" alt="">
+                        <div class="hover-icono">
+                            <a href="https://youtu.be/FJ7aN5OWx5E" style="text-decoration: none; " target="_blank"> <p>Ver</p></a>
+                           
+                        </div>
+                    </div>
+                    <div class="imagen-juegos">
+                        <img src="{% static 'JuegosNuevosINdex/img/pdf.png' %}" alt="">
+                        <div class="hover-icono">
+                            <li style="list-style-type:none ;"><a target="_blank" href="{% static 'JuegosNuevosINdex/img/decenas.pdf' %}" style="text-decoration: none; color: aliceblue;" >Descargar</a></li>
+
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </section>
+     
+
+    </main>
+    <footer class="contacto" id="contacto"style="height:40% ;">
+        <div class="footer-content">
+            <div class="contact-us">
+                <h2 class="brand">Unidad Educativa Intercultural Bilingüe Huayna Capac </h2>
+                <P>Comprometidos con la formación profesional desde 1982.
+                </P>
+            </div>
+            
+        </div>
+        <div class="line"></div>
+    </footer>
+   <script src="{% static 'juegosNuevosINdex/js/app.js' %}"></script>
+   <script src="{% static 'juegosNuevosINdex/js/lightbox.js' %}"></script>
+   <script src="{% static 'juegosNuevosINdex/js/jquery.js' %}"></script>
+</body>
+</html>

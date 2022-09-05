@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Estudiantes</title>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>Estudiantes</title>
+            <style>
+        
+                * {
+                    color: black;
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+        
+                }
+        
+                body {
+                    padding: 0;
+                    margin: 0;
+                    color: black;
+                }
+        
+                .name-company {
+                    font-size: 30px;
+                    padding: 0;
+                    margin: 0;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    text-align: center;
+                }
+        
+                table thead tr th {
+                    border: 1px solid black !important;
+                    padding: 3px;
+                }
+        
+                table tbody tr td {
+                    border: 1px solid black;
+                    padding: 3px;
+                }
+        
+                .logo{
+                    width: 90px;
+                    height: 120px;
+                    float: right;
+                    margin-bottom:  15px; ;
+                    
+                }
+                .final{
+                  display: inline-flexbox;
+                  width: 100%;
+                  height: 50px;
+                  bottom: 0;
+                  position: fixed;
+                  text-align: right;
+                  padding-top: 100px;
+                }
+        
+            </style>
+</head>
+<body>
+    <!--
+        Reporte Imprimir Asistencia
+    -->
+<div class="container-fluid" style="padding-bottom:90px ;">
+    <div>
+        <img  style="text-align: right;"class="logo" src="{% static 'matricula/img/logo.jpeg' %}" alt="no imagen">
+        <br>
+        <h2 style="text-align:center; color:#249ad1">Unidad Educativa Intercultural Bilingue Huayna Capac</h2>
+  <br>
+        <h4 class="text-center"><strong>Reporte de Asistencia</strong></h4>
+  
+       </div>
+  <table style="width: 100%;">
+    <tr>
+      <th>             <h6 class=""><strong>Curso: </strong>{{ curso.nivel | upper}}</h6>
+      </th>
+      <th>             <h6><strong>Modalidad:</strong>  {{ curso.seccion | upper}}</h6>
+      </th>
+      <th>             <h6><strong>Materia:</strong>  {{ curso.asignatura | upper}}</h6>
+      </th>
+    </tr>
+  </table>
+ <br>
+    <p >
+        <strong>Profesor: </strong>  {{ curso.profesor.first_name }} {{ curso.profesor.last_name }} <br>
+        <br>
+    </p>
+    {% if lista %}
+    <table class="table" style="width: 100%;">
+        <thead>
+        <tr style="border: 1px solid black; text-align: center;">
+            <th >#</th>
+            <th >Nombre</th>
+            <th >Apellido</th>
+            <th>Fecha</th>
+            <th>Asistencia</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for det in lista %}
+            <tr style="text-align: center;">
+                <td>{{ forloop.counter }}</td>
+                <td>{{ det.estudiant.user.first_name | upper}}</td>
+                <td>{{ det.estudiant.user.last_name | upper}}</td>
+                <td>{{ det.creada_en | date:"M/d" | upper}}</td>
+                <td> Asistencia</td>
+            </tr>
+        {% endfor %}
+        
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+<div class="final">
+    <hr>
+    <h6 >@ Desarrollado por Unidad Educativa Huayna Capac</h6>
+    <h6 >{{fecha_dt1}}</h6>
+    </div>
+  
+</body>
+</html>

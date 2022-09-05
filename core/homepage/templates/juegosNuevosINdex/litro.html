@@ -1,0 +1,200 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu desplegable</title>
+   
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+  
+    <link rel="stylesheet" href="{% static 'juegosNuevosINdex/css/estilos.css' %}" />
+    <link rel="stylesheet" href="{% static 'juegosNuevosINdex/css/bootstrap.css' %}" />
+
+</head>
+<body>
+    <nav class="menu">
+        <section class="menu__container">
+            <img src="{% static 'juegosNuevosINdex/img/logo.png' %}" alt="" width="5%" height="100%">
+
+            <ul class="menu__links">
+                <li class="menu__item">
+                    <a href="{% url 'index' %}" class="menu__link">Inicio</a>
+                </li>
+    
+                <li class="menu__item menu__item--show">
+                    <a href="#" class="menu__link">Unidad 1 <img src="{% static 'juegosNuevosINdex/assets/arrow.svg' %}" class="menu__arrow"></a>
+    
+                    <ul class="menu__nesting">
+                        <li class="menu__inside">
+                            <a href="{% url 'numerosIndex' %}" class="menu__link menu__link--inside">Números</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'figurasIndex' %}" class="menu__link menu__link--inside">Figuras</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'sumaIndex' %}" class="menu__link menu__link--inside">Suma</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'restaIndex' %}" class="menu__link menu__link--inside">Resta</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'kilogramoIndex' %}" class="menu__link menu__link--inside">Kilogramo y gramo</a>
+                        </li>
+                    </ul>
+                </li>
+    
+                <li class="menu__item  menu__item--show">
+                    <a href="#" class="menu__link">Unidad 2  <img src="{% static 'juegosNuevosINdex/assets/arrow.svg' %}" class="menu__arrow"></a>
+    
+                    <ul class="menu__nesting">
+                        <li class="menu__inside">
+                            <a href="{% url 'decenasIndex' %}}" class="menu__link menu__link--inside">Decenas y Unidades</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'indexJuego' %}" class="menu__link menu__link--inside">Conjuntos</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'sucesionesIndex' %}" class="menu__link menu__link--inside">Sucesiones</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'litroIndex' %}" class="menu__link menu__link--inside">Litro</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'conjuntosIndex' %}" class="menu__link menu__link--inside">Conteo númerico y unidad monetaria</a>
+                        </li>
+                    </ul>
+                </li>
+    
+           
+            </ul>
+
+            <div class="menu__hamburguer">
+                <img src="{% static 'juegosNuevosINdex/img/hamburguesa.svg' %}" class="menu__img">
+            </div>
+        </section>
+
+      
+    </nav>
+    <header class="header" id="inicio">
+        <div class="contenedor head">
+            <h1 class="titulo"><strong>Matemáticas: </strong> Litro
+            </h1>
+        <br>
+        <br>
+        <br>
+        </div>
+    </header>
+    <main>
+        <section class="services contenedor" id="servicio">
+            <h2 class="subtitulo">Concepto:</h2>
+            <p align="center">El litro es una unidad de medida de volumen que ocupa un líquido.</p>
+            <br>
+            <div class="contenedor-servicio">
+                <img src="{% static 'juegosNuevosINdex/img/agua.png' %}" alt="">
+                <div class="checklist-servicio">
+                    <div class="service">
+                        <h3 class="n-service"><span class="number">1</span><strong>Recuerda:</strong></h3>
+                        <p style="font-size: 13px;"align="justify">La masa es la cantidad de materia que tiene un cuerpo, mientras que el peso es la fuerza de la gravedad sobre él. Un cuerpo es más pesado mientras más masa tiene.</p>
+                        
+                    </div>
+                    <div class="service">
+                        <h3 class="n-service"><span class="number">2</span>Litro:</h3>
+                        <p style="font-size: 13px;" align="justify">Es una unidad métrica de volumen, mayor mente usada para medir líquidos su abreviatura es <strong>"L"</strong>.</p>
+                        
+                    </div>  
+                    
+                    <div class="service">
+                        <h3 class="n-service"><span class="number">3</span>Capacidad:
+
+                        </h3>
+                        <p style="font-size: 13px;"align="justify">Es la propiedad de un recipiente para contener cierta cantidad de líquido u otra sustancia en su interior.</p>
+                        
+                    </div>
+                    <div class="service">
+                        <h3 class="n-service"><span class="number">4</span>Masa:
+
+                        </h3>
+                        <p style="font-size: 13px;"align="justify">Se establece por la cantidad de materia que puede tener un cuerpo y puede ser estimado por la observación o el tacto.</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="services contenedor" id="servicio">
+            <h2 class="subtitulo">Ejemplos:</h2>
+            
+            <div class="contenedor-servicio1">
+                <div class="posts">
+                    <article class="prueba3">
+                        <br>
+                        <p align="center"><strong>¿Qué recipiente llena mas rápido el tanque.?</strong></p>
+                        <img src="{% static 'juegosNuevosINdex/img/llenar.jpg' %}" width="60%" height="60%"alt="#" style="margin-left: 20%;">
+                        <hr>
+                    </article>
+                    <article class="prueba3">
+                        <p align="center"><strong> Recuerda:</strong> Si queremos medir el litro  que se encuentra dentro de un envase. <strong>No podemos medir con una regla o metro.</strong></p>
+                        <img align="center"  src="{% static 'juegosNuevosINdex/img/medida.png' %}" width="60%" height="60%"alt="#" style="margin-left: 20%;" >
+                        <hr>
+                    </article>
+                    <article>   
+                        
+                        <br>
+                        <p align="center"><strong> Familia del Litro.</strong></p>
+                    <img align="center"  src="{% static 'juegosNuevosINdex/img/medidas.png' %}" width="60%" height="60%"alt="#" style="margin-left: 20%;" >
+                       <hr>
+                    </article>
+                    
+                </div>
+            </div>
+        </section>
+        <section>
+            <br>
+            <h2 class="subtitulo">Juega y Aprende</h2>
+
+            <div style="margin-left:10%; margin-right: 10%; margin-top: 5%;">
+                <iframe style="max-width:100%" src="https://wordwall.net/es/embed/3e07e996c7f4430d868da514a62321ed?themeId=1&templateId=5&fontStackId=0" width=100% height="380" frameborder="0" allowfullscreen></iframe>            </div>
+        </section>
+        <section class="juega aprende">
+            <div class="contenedor">
+                <h2 class="subtitulo">Material De Refuerzo</h2>
+                <div class="elija-juego">
+                    <div class="imagen-juegos">
+                        <img src="{% static 'JuegosNuevosINdex/img/video.png' %}" alt="">
+                        <div class="hover-icono">
+                            <a href="https://youtu.be/_yq2iPn6EPE" style="text-decoration: none; " target="_blank"> <p>Ver</p></a>
+                           
+                        </div>
+                    </div>
+                    <div class="imagen-juegos">
+                        <img src="{% static 'JuegosNuevosINdex/img/pdf.png' %}" alt="">
+                        <div class="hover-icono">
+                            <li style="list-style-type:none ;"><a target="_blank" href="{% static 'JuegosNuevosINdex/img/litro.pdf' %}" style="text-decoration: none; color: aliceblue;" >Descargar</a></li>
+
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </section>
+     
+
+    </main>
+    <footer class="contacto" id="contacto"style="height:40% ;">
+        <div class="footer-content">
+            <div class="contact-us">
+                <h2 class="brand">Unidad Educativa Intercultural Bilingüe Huayna Capac </h2>
+                <P>Comprometidos con la formación profesional desde 1982.
+                </P>
+            </div>
+            
+        </div>
+        <div class="line"></div>
+    </footer>
+   <script src="{% static 'juegosNuevosINdex/js/app.js' %}"></script>
+   <script src="{% static 'juegosNuevosINdex/js/lightbox.js' %}"></script>
+   <script src="{% static 'juegosNuevosINdex/js/jquery.js' %}"></script>
+</body>
+</html>

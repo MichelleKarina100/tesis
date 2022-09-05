@@ -1,0 +1,227 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu desplegable</title>
+   
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+  
+    <link rel="stylesheet" href="{% static 'juegosNuevosINdex/css/estilos.css' %}" />
+    <link rel="stylesheet" href="{% static 'juegosNuevosINdex/css/bootstrap.css' %}" />
+
+</head>
+<body>
+    <nav class="menu">
+        <section class="menu__container">
+            <img src="{% static 'juegosNuevosINdex/img/logo.png' %}" alt="" width="5%" height="100%">
+
+            <ul class="menu__links">
+                <li class="menu__item">
+                    <a href="{% url 'index' %}" class="menu__link">Inicio</a>
+                </li>
+    
+                <li class="menu__item menu__item--show">
+                    <a href="#" class="menu__link">Unidad 1 <img src="{% static 'juegosNuevosINdex/assets/arrow.svg' %}" class="menu__arrow"></a>
+    
+                    <ul class="menu__nesting">
+                        <li class="menu__inside">
+                            <a href="{% url 'numerosIndex' %}" class="menu__link menu__link--inside">Números</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'figurasIndex' %}" class="menu__link menu__link--inside">Figuras</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'sumaIndex' %}" class="menu__link menu__link--inside">Suma</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'restaIndex' %}" class="menu__link menu__link--inside">Resta</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'kilogramoIndex' %}" class="menu__link menu__link--inside">Kilogramo y gramo</a>
+                        </li>
+                    </ul>
+                </li>
+    
+                <li class="menu__item  menu__item--show">
+                    <a href="#" class="menu__link">Unidad 2  <img src="{% static 'juegosNuevosINdex/assets/arrow.svg' %}" class="menu__arrow"></a>
+    
+                    <ul class="menu__nesting">
+                        <li class="menu__inside">
+                            <a href="{% url 'decenasIndex' %}" class="menu__link menu__link--inside">Decenas y Unidades</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'indexJuego' %}" class="menu__link menu__link--inside">Conjuntos</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'sucesionesIndex' %}" class="menu__link menu__link--inside">Sucesiones</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'litroIndex' %}" class="menu__link menu__link--inside">Litro</a>
+                        </li>
+                        <li class="menu__inside">
+                            <a href="{% url 'conjuntosIndex' %}" class="menu__link menu__link--inside">Conteo númerico y unidad monetaria</a>
+                        </li>
+                    </ul>
+                </li>
+    
+           
+            </ul>
+
+            <div class="menu__hamburguer">
+                <img src="{% static 'juegosNuevosINdex/img/hamburguesa.svg' %}" class="menu__img">
+            </div>
+        </section>
+
+      
+    </nav>
+    <header class="header" id="inicio">
+        <div class="contenedor head">
+            <h1 class="titulo"><strong>Matamáticas: </strong> Formas y Figuras
+            </h1>
+        <br>
+        <br>
+        <br>
+        </div>
+    </header>
+    <main>
+        <section class="services contenedor" id="servicio">
+            <h2 class="subtitulo">Concepto:</h2>
+            <p align="justify">Son conjuntos cerrados definidos por una serie de puntos. El estudio de estas figuras, o geometría, es la rama de las matemáticas que se dedica a estudiar estas formas.</p>
+            <div class="contenedor-servicio">
+                <img src="{% static 'juegosNuevosINdex/img/fe.png' %}" alt="">
+                <div class="checklist-servicio">
+                    <div class="service">
+                        <h3 class="n-service"><span class="number">1</span>Romboide:</h3>
+                        <p style="font-size: 13px;" align="justify">Es parecido al rectángulo, pero sus ángulos son diferentes.</p>
+                        
+                    </div>
+                    <div class="service">
+                        <h3 class="n-service"><span class="number">2</span>Rombo:</h3>
+                        <p style="font-size: 13px;"align="justify">Es un polígono de 4 lados iguales, pero a diferencia del cuadrado, sus ángulos son iguales dos a dos.</p>
+                        
+                    </div>
+                    <div class="service">
+                        <h3 class="n-service"><span class="number">3</span>Elipse:
+
+                        </h3>
+                        <p style="font-size: 13px;"align="justify">Es una forma curva don dos ejes diferentes.</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="services contenedor" id="servicio">
+            <h2 class="subtitulo">Tipos de figuras y formas:</h2>
+            
+            <div class="contenedor-servicio1">
+                <div class="posts">
+                    <article class="prueba">
+                        <h3 class="prueba1">Círculo</h3>
+                        <p  align="center">En geometría, un círculo es el área o superficie contenida dentro de una circunferencia.</p>
+                        <img align="center"  src="{% static 'juegosNuevosINdex/img/cir.png' %}" width="20%" height="20%"alt="#" style="margin-left: 40%;" >
+                        
+                    </article>
+                    <article class="prueba">
+                        <h3 class="prueba1">Cuadrado</h3>
+                        <p " align="center">Es una palabra que suele emplearse para nombrar a la figura geométrica que está formada por cuatro lados iguales y paralelos..</p>
+                        <img  src="{% static 'JuegosNuevosINdex/img/cua.png' %}" width="20%" height="20%"alt="#" style="margin-left: 40%;" >
+                        
+                    </article>
+                    <article class="prueba">
+                        <h3 class="prueba1">Triángulo</h3>
+                        <p class="prueba2 "align="center">El triángulo es un polígono de tres lados. El triángulo está determinado por tres segmentos de recta que se denominan lados, o por tres puntos no alineados llamados vértices. </p>
+                        <img src="{% static 'JuegosNuevosINdex/img/tri.png' %}" width="20%" height="20%"alt="#" style="margin-left: 40%;">
+                        
+                    </article>
+                    
+                    <article class="prueba">
+                        <h3 class="prueba1">Rectángulo</h3>
+                        <p class="prueba2 "align="center">El rectángulo es una figura geométrica con dos pares de lados que miden igual y que, al mismo tiempo, son paralelos entre sí.</p>
+                        <img src="{% static 'JuegosNuevosINdex/img/rec.png' %}" width="20%" height="20%"alt="#" style="margin-left: 40%;">
+                        
+                    </article>
+                    <article class="prueba">
+                        <h3 class="prueba1">Óvalo</h3>
+                        <p class="prueba2" align="center">Un óvalo es cualquier curva que se vea como un huevo o una elipse.</p>
+                        <img src="{% static 'JuegosNuevosINdex/img/ova.png' %}" width="20%" height="20%"alt="#" style="margin-left: 40%;">
+                        
+                    
+                    </article>
+                    
+                </div>
+            </div>
+        </section>
+        <section class="gallery" id="portafolio">
+            <div class="contenedor">
+                <h2 class="subtitulo">Tipos de Conjuntos</h2>
+                <div class="contenedor-galeria">
+                    <img src="{% static 'JuegosNuevosINdex/img/med.png' %}" alt="" class="img-galeria">
+                    <img src="{% static 'JuegosNuevosINdex/img/rom.png' %}" alt="" class="img-galeria">
+                    <img src="{% static 'JuegosNuevosINdex/img/tra.png' %}" alt="" class="img-galeria">
+                    <img src="{% static 'JuegosNuevosINdex/img/cor.png' %}" alt="" class="img-galeria">
+                    <img src="{% static 'JuegosNuevosINdex/img/estrella.png' %}" alt="" class="img-galeria">
+                    <img src="{% static 'JuegosNuevosINdex/img/hexaa.png' %}" alt="" class="img-galeria">
+                </div>
+            </div>
+        </section>
+        <section class="imagen-ligth">
+            <img src="{% static 'JuegosNuevosINdex/img/close.svg' %}" alt="" class="close">
+            <img src="{% static 'JuegosNuevosINdex/img/portada.png' %}" alt="" class="agregar-imagen">
+            
+                
+            </div>
+            
+        </section>
+        <section>
+            <br>
+            <h2 class="subtitulo">Juega y Aprende</h2>
+
+            <div style="margin-left:10%; margin-right: 10%; margin-top: 5%;">
+                <iframe style="max-width:100%" src="https://wordwall.net/embed/247a6605c22145b09d83235011129b85?themeId=46&templateId=3&fontStackId=0" width=100% height="380" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </section>
+        <section class="juega aprende">
+            <div class="contenedor">
+                <h2 class="subtitulo">Material De Refuerzo</h2>
+                <div class="elija-juego">
+                    <div class="imagen-juegos">
+                        <img src="{% static 'JuegosNuevosINdex/img/video.png' %}" alt="">
+                        <div class="hover-icono">
+                            <a href="https://www.youtube.com/embed/iC1NDQVQyQ0" style="text-decoration: none; " target="_blank"> <p>Ver</p></a>
+                           
+                        </div>
+                    </div>
+                    <div class="imagen-juegos">
+                        <img src="{% static 'JuegosNuevosINdex/img/pdf.png' %}" alt="">
+                        <div class="hover-icono">
+                            <li style="list-style-type:none ;"><a target="_blank" href="{% static 'JuegosNuevosINdex/img/figuras1.pdf' %}" style="text-decoration: none; color: aliceblue;" >Descargar</a></li>
+
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </section>
+     
+
+    </main>
+    <footer class="contacto" id="contacto"style="height:40% ;">
+        <div class="footer-content">
+            <div class="contact-us">
+                <h2 class="brand">Unidad Educativa Intercultural Bilingüe Huayna Capac </h2>
+                <P>Comprometidos con la formación profesional desde 1982.
+                </P>
+            </div>
+            
+        </div>
+        <div class="line"></div>
+    </footer>
+   <script src="{% static 'juegosNuevosINdex/js/app.js' %}"></script>
+   <script src="{% static 'juegosNuevosINdex/js/lightbox.js' %}"></script>
+   <script src="{% static 'juegosNuevosINdex/js/jquery.js' %}"></script>
+</body>
+</html>

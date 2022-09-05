@@ -1,0 +1,105 @@
+@font-face {
+    /*font-family: "championship";
+    src: url("../fonts/championship/Championship.ttf");*/
+    
+    font-family: Sketch; 
+    src: url("../fonts/dk_jambo/DK Jambo.otf"); 
+}
+header{
+    background-image: url(../image/fondo.jpg);
+    background-repeat:round;
+    padding-top: 0.5%;
+    height: 175px;
+    margin-bottom: 1%;
+}
+header h1{
+    font-family: Sketch;
+    text-align: center;
+    font-size: 350%;
+    margin-top: 1%;
+}
+
+.button {
+    margin:3% 47% 3% 45%;
+    border: 2px solid black;
+    box-sizing: border-box;
+    padding: 0.2em 0.3em;
+    font-weight: bold;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.7); 
+}
+h4{
+    text-align: center;
+    margin-bottom: 3%;
+}
+body main{
+    border:1px solid; 
+    background-color:cadetblue;
+}
+body{
+    margin: 3%;
+}
+section{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+#dosColumnas{
+    width: 25%;
+    border:2px solid;
+    background-color:white;
+}
+#dosColumnas img {
+    margin: 2%;
+    padding: 10% 25% 10% 25%;
+    width: 50%;
+    align-content: center;
+}
+
+.cuadrado{
+    margin-top: 20%;
+}
+.circulo{
+    margin-top: 30%;
+}
+.estrella{
+    margin-top: 30%;
+}
+.triangulo{
+    margin-top: 30%;
+}
+
+#recuadro-cuadrado {
+    margin: 5px;
+    border: 1px dashed;
+    padding: 10px;
+    
+}
+#recuadro-circulo {
+    margin: 5px;
+    border: 1px dashed;
+    padding: 10px;
+    
+}
+#recuadro-triangulo {
+    margin: 5px;
+    border: 1px dashed;
+    padding: 10px;
+    
+}
+#recuadro-estrella {
+    margin: 5px;
+    border: 1px dashed;
+    padding: 10px;
+    
+}
+
+
+div{
+   margin:8% 15% 8% 8%;
+}
+
+
+
